@@ -16,36 +16,36 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; background: var(--bg); color: var(--text); }
   body { font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
-  button, input, select { font: inherit; color: inherit; }
+  button, input, select, textarea { font: inherit; color: inherit; }
   .wrap { max-width: 1180px; margin: 0 auto; padding: 16px 16px 60px; }
   .muted { color: var(--muted); }
   .tiny { font-size: 12px; }
   .hidden { display: none !important; }
   .num { font-variant-numeric: tabular-nums; }
+  a { color: var(--blue); }
 
-  /* header */
   header { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
   .brand { font-weight: 800; font-size: 20px; letter-spacing: -.02em; }
   .brand span { color: var(--gold); }
-  .hdr-right { margin-left: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .hdr-right { margin-left: auto; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 99px; background: var(--card); border: 1px solid var(--line); font-size: 12px; color: var(--muted); }
-  .btn { border: 1px solid var(--line); background: var(--card2); padding: 7px 12px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; }
+  .btn { border: 1px solid var(--line); background: var(--card2); padding: 7px 12px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; white-space: nowrap; }
   .btn:hover { border-color: var(--blue); }
   .btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
   .btn.danger { color: var(--red); }
   .btn.danger:hover { border-color: var(--red); }
   .btn.good { color: var(--green); }
+  .btn.sm { padding: 4px 9px; font-size: 12px; border-radius: 8px; }
   .btn:disabled { opacity: .5; cursor: default; }
   .dev-banner { background: #3a2a00; border: 1px solid #7a5a00; color: var(--gold); padding: 8px 12px; border-radius: 10px; font-size: 13px; margin-bottom: 12px; }
+  .note { background: var(--bg); border: 1px dashed var(--line); border-radius: 10px; padding: 8px 10px; font-size: 12.5px; color: var(--muted); margin-top: 10px; }
 
-  /* tabs */
   nav { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 16px; scrollbar-width: none; }
   nav::-webkit-scrollbar { display: none; }
   nav button { flex: none; border: 1px solid var(--line); background: var(--card); padding: 8px 14px; border-radius: 99px; cursor: pointer; font-weight: 600; font-size: 14px; color: var(--muted); }
   nav button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
   .badge { display: inline-block; min-width: 18px; padding: 0 5px; margin-left: 4px; border-radius: 99px; background: var(--red); color: #fff; font-size: 11px; line-height: 18px; text-align: center; }
 
-  /* cards */
   .grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(165px, 1fr)); }
   .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
   .stat .k { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
@@ -53,28 +53,34 @@
   .stat .s { font-size: 12px; color: var(--muted); }
   .stat.alert { border-color: var(--red); }
   .stat.alert .v { color: var(--red); }
+  .stat.live { border-color: rgba(25, 211, 138, .5); }
   .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); display: inline-block; flex: none; }
-  .dot.on { background: var(--green); box-shadow: 0 0 0 0 rgba(25, 211, 138, .6); animation: pulse 2s infinite; }
+  .dot.on { background: var(--green); animation: pulse 2s infinite; }
   .dot.today { background: var(--gold); }
+  .dot.ban { background: var(--red); }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(25, 211, 138, .6); } 70% { box-shadow: 0 0 0 7px rgba(25, 211, 138, 0); } 100% { box-shadow: 0 0 0 0 rgba(25, 211, 138, 0); } }
 
   .panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; margin-top: 14px; }
+  .panel.first { margin-top: 0; }
   .panel h2 { font-size: 15px; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .panel h2 .right { margin-left: auto; display: flex; gap: 6px; }
   .cols { display: grid; gap: 14px; grid-template-columns: 1fr; }
-  @media (min-width: 900px) { .cols { grid-template-columns: 1.3fr 1fr; } }
-  .seg { display: inline-flex; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 2px; }
+  @media (min-width: 900px) { .cols { grid-template-columns: 1.3fr 1fr; } .cols.even { grid-template-columns: 1fr 1fr; } }
+  .seg { display: inline-flex; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 2px; flex-wrap: wrap; }
   .seg button { border: 0; background: none; padding: 4px 10px; border-radius: 8px; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--muted); }
   .seg button.on { background: var(--card2); color: var(--text); }
 
-  /* chart */
   .chart svg { width: 100%; height: 190px; display: block; }
   .chart .cap { font-size: 13px; color: var(--muted); min-height: 20px; margin-top: 6px; }
-  .chart rect.bar { fill: var(--blue); }
+  .chart rect.bar { fill: var(--blue); cursor: pointer; }
   .chart rect.bar.today { fill: var(--green); }
   .chart rect.bar:hover, .chart rect.bar.sel { fill: var(--gold); }
+  .hbar { display: flex; align-items: center; gap: 8px; font-size: 13px; margin: 6px 0; }
+  .hbar .l { width: 70px; flex: none; }
+  .hbar .t { flex: 1; height: 10px; border-radius: 99px; background: var(--bg); overflow: hidden; }
+  .hbar .t div { height: 100%; background: var(--purple); border-radius: 99px; }
+  .hbar .n { width: 64px; text-align: right; flex: none; color: var(--muted); }
 
-  /* lists */
   .list { display: flex; flex-direction: column; }
   .row { display: flex; align-items: center; gap: 10px; padding: 9px 4px; border-top: 1px solid var(--line); min-width: 0; }
   .row:first-child { border-top: 0; }
@@ -85,45 +91,55 @@
   .row .sub { font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .row .end { text-align: right; flex: none; }
   .row .end .big { font-weight: 700; }
+  .row .acts { display: flex; gap: 6px; flex: none; }
   .tag { display: inline-block; padding: 0 6px; border-radius: 6px; background: var(--card2); border: 1px solid var(--line); font-size: 11px; font-weight: 700; color: var(--muted); margin-left: 4px; vertical-align: 1px; }
-  .tag.gold { color: var(--gold); } .tag.green { color: var(--green); } .tag.red { color: var(--red); } .tag.blue { color: var(--blue); }
+  .tag.gold { color: var(--gold); } .tag.green { color: var(--green); } .tag.red { color: var(--red); } .tag.blue { color: var(--blue); } .tag.purple { color: var(--purple); }
   .emb { font-size: 22px; width: 30px; text-align: center; flex: none; }
   .feed .row { font-size: 14px; }
   .feed .t { font-size: 12px; color: var(--muted); flex: none; width: 62px; }
   .empty { color: var(--muted); padding: 20px 4px; text-align: center; font-size: 14px; }
 
-  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
-  .toolbar input, .toolbar select, .field input, .field select { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
-  .toolbar input { flex: 1; min-width: 160px; }
-  .hide-sm { }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; align-items: center; }
+  input.in, select.in, textarea.in { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; width: 100%; }
+  textarea.in { min-height: 70px; resize: vertical; }
+  .toolbar input.in { flex: 1; min-width: 160px; width: auto; }
+  .toolbar select.in { width: auto; }
+  .form { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  @media (min-width: 640px) { .form.two { grid-template-columns: 1fr 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+  .field.full { grid-column: 1 / -1; }
   @media (max-width: 600px) { .hide-sm { display: none; } .stat .v { font-size: 22px; } }
 
-  /* war */
   .war { padding: 12px 4px; border-top: 1px solid var(--line); }
   .war:first-child { border-top: 0; }
   .war .vs { display: flex; align-items: center; gap: 8px; font-weight: 700; }
   .war .vs .side { flex: 1; display: flex; align-items: center; gap: 6px; min-width: 0; }
   .war .vs .side.r { justify-content: flex-end; }
   .war .score { font-size: 18px; font-variant-numeric: tabular-nums; }
+  .war .foot { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .war .foot .acts { margin-left: auto; display: flex; gap: 6px; }
   .bar2 { height: 8px; border-radius: 99px; background: var(--red); overflow: hidden; margin: 8px 0 4px; }
   .bar2 > div { height: 100%; background: var(--blue); }
 
-  /* modal */
   .modal { position: fixed; inset: 0; background: rgba(0, 0, 0, .6); display: flex; align-items: flex-end; justify-content: center; z-index: 50; }
   @media (min-width: 700px) { .modal { align-items: center; } }
-  .sheet { background: var(--card); border: 1px solid var(--line); width: 100%; max-width: 620px; max-height: 88vh; overflow: auto; border-radius: 18px 18px 0 0; padding: 18px 16px 24px; }
+  .sheet { background: var(--card); border: 1px solid var(--line); width: 100%; max-width: 640px; max-height: 90vh; overflow: auto; border-radius: 18px 18px 0 0; padding: 18px 16px 24px; }
   @media (min-width: 700px) { .sheet { border-radius: 18px; } }
-  .sheet h3 { margin: 0; font-size: 20px; }
+  .sheet h3 { margin: 0; font-size: 20px; padding-right: 50px; }
+  .sheet h4 { margin: 18px 0 6px; font-size: 15px; }
   .sheet .close { float: right; }
   .kv { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin: 14px 0; }
-  .kv div { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; }
-  .kv b { display: block; font-size: 16px; }
+  .kv div { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; min-width: 0; }
+  .kv b { display: block; font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .kv span { font-size: 11px; color: var(--muted); }
   .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
   .mini-bars { display: flex; align-items: flex-end; gap: 2px; height: 50px; margin-top: 6px; }
   .mini-bars div { flex: 1; background: var(--blue); border-radius: 2px 2px 0 0; min-height: 1px; }
+  .emblems { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .emblems button { font-size: 22px; width: 42px; height: 42px; border-radius: 10px; border: 2px solid var(--line); background: var(--bg); cursor: pointer; }
+  .emblems button.on { border-color: var(--gold); }
+  .banbox { background: rgba(255, 84, 112, .1); border: 1px solid rgba(255, 84, 112, .4); color: var(--red); border-radius: 10px; padding: 8px 10px; margin-top: 10px; font-size: 13px; }
 
-  /* event */
   .ev-now { display: flex; gap: 14px; align-items: center; padding: 14px; border-radius: 14px; background: var(--bg); border: 1px solid var(--line); }
   .ev-now .ic { font-size: 40px; }
   .ev-grid { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
@@ -131,16 +147,22 @@
   .ev-opt.on { border-color: var(--gold); }
   .ev-opt b { display: block; }
   .ev-opt small { color: var(--muted); font-size: 12px; }
-  .field { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+  .ann-prev { display: flex; gap: 8px; align-items: center; padding: 9px 12px; border-radius: 12px; font-size: 13px; background: linear-gradient(90deg, rgba(76, 141, 255, .18), rgba(34, 211, 238, .1)); border: 1px solid rgba(76, 141, 255, .4); }
+  .ann-prev.warn { background: linear-gradient(90deg, rgba(255, 210, 63, .18), rgba(255, 84, 112, .1)); border-color: rgba(255, 210, 63, .45); }
+  .ann-prev.gift { background: linear-gradient(90deg, rgba(25, 211, 138, .18), rgba(255, 210, 63, .1)); border-color: rgba(25, 211, 138, .45); }
+  .meter { height: 12px; border-radius: 99px; background: var(--bg); overflow: hidden; border: 1px solid var(--line); margin: 6px 0; }
+  .meter div { height: 100%; background: var(--green); }
+  .logrow { font-size: 13px; }
+  .logrow code { font-size: 12px; color: var(--muted); }
 
-  /* login */
   .login { max-width: 360px; margin: 12vh auto 0; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
   .login h1 { font-size: 22px; margin: 0 0 4px; }
   .login input { width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; margin-top: 10px; }
   .login .btn { width: 100%; margin-top: 14px; padding: 11px; font-size: 15px; }
   .err { color: var(--red); font-size: 13px; margin-top: 10px; min-height: 18px; }
 
-  .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 12px; font-weight: 600; z-index: 60; box-shadow: 0 8px 30px rgba(0, 0, 0, .4); }
+  .toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: 12px; font-weight: 600; z-index: 60; box-shadow: 0 8px 30px rgba(0, 0, 0, .4); max-width: 90vw; }
+  .toast.bad { background: var(--red); color: #fff; }
   .spin { width: 28px; height: 28px; border: 3px solid var(--line); border-top-color: var(--blue); border-radius: 50%; animation: sp 0.8s linear infinite; margin: 30vh auto 10px; }
   @keyframes sp { to { transform: rotate(360deg); } }
 </style>
@@ -184,8 +206,9 @@ const CFG = {
 };
 const DEV = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && new URLSearchParams(location.search).has('dev');
 const REFRESH_MS = 30000;
+const ONLINE_MS = 180000;   // "in the game" = seen in the last 3 minutes
 
-// Mirrors EVENTS in www/js/data.js (keep in sync when adding events).
+// Mirrors www/js/data.js (EVENTS, PACKS) — keep in sync when adding events or packs.
 const EVENT_EPOCH = Date.UTC(2026, 0, 5);
 const WEEK_MS = 7 * 86400000;
 const EVENTS = [
@@ -199,14 +222,19 @@ const EVENTS = [
   { key: 'ipo_week',      icon: '🔔', name: 'Halka Arz Haftası',     desc: 'Tüm çalışanlar %25 indirimli', staffDisc: 0.25 },
 ];
 const EV = Object.fromEntries(EVENTS.map(e => [e.key, e]));
+const PACKS = { basic: '🃏 Yönetici Kartı', bundle: '🎴 3’lü Kart Paketi', rare: '💠 Nadir Paket', epic: '🌟 Destansı Paket' };
+const EMBLEMS = ['🐂', '🐻', '🦁', '🦅', '🐺', '🦈', '🐉', '🔥', '⚡', '💎', '👑', '🚀', '🏦', '📈', '🎯', '🌙'];
 const TIERS = { bronze: ['Bronz', '🥉'], silver: ['Gümüş', '🥈'], gold: ['Altın', '🥇'], diamond: ['Elmas', '💎'], baron: ['Baron', '👑'] };
 const QUICK = { hello: 'Selam! 👋', gg: 'İyi oyundu 🤝', attack: 'Saldırıya! ⚔️', nice: 'Harika! 🔥', thanks: 'Teşekkürler 🙏',
                 hurry: 'Acele edin! ⏰', profit: 'Kâr zamanı 💰', sleep: 'Uyumaya gidiyorum 😴' };
+const LANGS = { tr: '🇹🇷 Türkçe', en: '🇬🇧 İngilizce', '?': 'Bilinmiyor' };
+const ANN_STYLES = { info: '📣 Bilgi', warn: '⚠️ Uyarı', gift: '🎉 Kutlama' };
+const DURATIONS = [[6, '6 saat'], [12, '12 saat'], [24, '1 gün'], [48, '2 gün'], [72, '3 gün'], [120, '5 gün'], [168, '1 hafta'], [336, '2 hafta']];
 
 let sb = null, db = null, D = null, busy = false, timer = null;
-let tab = 'overview', chartKey = 'active', chartSel = null;
-let pSearch = '', pSort = 'seen', cSearch = '';
-let evPick = null, evHours = 48, evStrong = false;
+let tab = 'overview', chartKey = 'devices', chartSel = null;
+let pView = 'players', pSearch = '', pSort = 'seen', cSearch = '';
+let evPick = null, evHours = 48, evStrong = false, evWhen = 'now';
 
 // ------------------------------------------------------------- helpers
 const $ = id => document.getElementById(id);
@@ -221,6 +249,9 @@ function fmt(n) {
   return k < SUFFIX.length ? (n / Math.pow(1000, k)).toPrecision(3) + SUFFIX[k] : n.toExponential(2);
 }
 const int = n => (Number(n) || 0).toLocaleString('tr-TR');
+const pct = (a, b) => b ? Math.round(100 * a / b) : 0;
+const isOn = t => t && Date.now() - Date.parse(t) < ONLINE_MS;
+const isBanned = p => p && p.banned_until && (p.banned_until === 'infinity' || Date.parse(p.banned_until) > Date.now());
 function ago(t) {
   if (!t) return '—';
   const s = (Date.now() - Date.parse(t)) / 1000;
@@ -243,19 +274,40 @@ function dur(sec) {
   const m = Math.round(sec / 60);
   return m < 60 ? m + ' dk' : Math.floor(m / 60) + ' sa ' + (m % 60) + ' dk';
 }
+const dateTime = t => new Date(t).toLocaleString('tr-TR', { dateStyle: 'short', timeStyle: 'short' });
 const dayLabel = d => new Date(d + 'T12:00:00').toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' });
-const status = p => (Date.now() - Date.parse(p.last_seen)) < 300000 ? 'on' : (p.today_s > 0 || (Date.now() - Date.parse(p.last_seen)) < 86400000) ? 'today' : '';
-function toast(msg) {
+const banText = p => p.banned_until === 'infinity' ? 'kalıcı' : left(p.banned_until);
+function status(p) {
+  if (isBanned(p)) return 'ban';
+  if (isOn(p.last_seen)) return 'on';
+  return (p.today_s > 0 || Date.now() - Date.parse(p.last_seen) < 86400000) ? 'today' : '';
+}
+function rewardText(r) {
+  if (!r) return '';
+  const b = [];
+  if (r.cash) b.push(`💵 ${r.cash >= 60 ? r.cash / 60 + ' saatlik' : r.cash + ' dakikalık'} gelir`);
+  if (r.pack) b.push(PACKS[r.pack] || r.pack);
+  if (r.rep) b.push(`🏅 ${r.rep} itibar`);
+  if (r.boost) b.push(`🐂 ${Math.round(r.boost / 60)} dk boğa koşusu`);
+  return b.join(' + ');
+}
+function toast(msg, bad) {
   const el = document.createElement('div');
-  el.className = 'toast'; el.textContent = msg;
+  el.className = 'toast' + (bad ? ' bad' : ''); el.textContent = msg;
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 2600);
+  setTimeout(() => el.remove(), bad ? 4000 : 2600);
 }
 const ERRORS = {
   NOT_ADMIN: 'Bu hesap yönetici değil. README › "Yönetim paneli" adımlarına bak.',
   PLAYER_NOT_FOUND: 'Oyuncu bulunamadı (silinmiş olabilir).',
+  NAME_TAKEN: 'Bu isim başka bir oyuncuda.', NAME_BAD: 'Bu isim küfür filtresine takıldı.',
+  NAME_LENGTH: 'İsim 3-16 karakter olmalı (klan: 3-20).', NAME_CHARS: 'İsimde sadece harf, rakam, boşluk, _ . - olabilir.',
+  CLAN_NAME_TAKEN: 'Bu klan adı kullanılıyor.', CLAN_TAG_TAKEN: 'Bu etiket kullanılıyor.', TAG_FORMAT: 'Etiket 2-5 büyük harf/rakam olmalı.',
+  USER_NOT_FOUND: 'Bu e-postayla bir hesap yok. Önce Supabase › Authentication › Add user ile oluştur.',
+  NOT_SELF: 'Kendini yöneticilikten çıkaramazsın.', EMPTY_GIFT: 'Hediyeye en az bir ödül ekle.',
+  WORD_SHORT: 'Kelime en az 2 harf olmalı.', BAD_EVENT: 'Etkinlik seçilmedi.', NOT_IN_CLAN: 'Oyuncu bir klanda değil.',
 };
-const errText = e => { const m = (e && (e.message || e.msg)) || String(e); return ERRORS[m] || m; };
+const errText = e => { const m = (e && (e.message || e.msg)) || String(e); const k = (m.match(/\b[A-Z][A-Z_]{3,}\b/) || [])[0]; return ERRORS[k] || m; };
 
 // ------------------------------------------------------------- data access
 async function rpc(name, args = {}) {
@@ -280,30 +332,34 @@ async function load(quiet) {
     render();
   } catch (e) {
     if (errText(e) === ERRORS.NOT_ADMIN && !DEV) { await sb.auth.signOut(); showLogin(ERRORS.NOT_ADMIN); }
-    else if (!quiet) toast('Hata: ' + errText(e));
+    else if (!quiet) toast('Hata: ' + errText(e), true);
     else $('updated').innerHTML = '<span class="dot"></span> bağlantı yok';
   } finally { busy = false; }
 }
 
 function startTimer() {
   clearInterval(timer);
-  timer = setInterval(() => { if (!document.hidden && !$('modal').innerHTML) load(true); }, REFRESH_MS);
+  timer = setInterval(() => {
+    const typing = document.activeElement && /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
+    if (!document.hidden && !$('modal').innerHTML && !typing) load(true);
+  }, REFRESH_MS);
 }
-document.addEventListener('visibilitychange', () => { if (!document.hidden && D) load(true); });
+document.addEventListener('visibilitychange', () => { if (!document.hidden && D && !$('modal').innerHTML) load(true); });
 
 // ------------------------------------------------------------- render
 const TABS = [
-  ['overview', '📊 Genel'], ['players', '👤 Oyuncular'], ['clans', '🛡️ Klanlar'],
-  ['wars', '⚔️ Savaşlar'], ['reports', '🚩 Şikayetler'], ['events', '🎉 Etkinlik'],
+  ['overview', '📊 Genel'], ['players', '👤 Oyuncular'], ['clans', '🛡️ Klanlar'], ['wars', '⚔️ Savaşlar'],
+  ['reports', '🚩 Şikayetler'], ['events', '🎉 Etkinlik'], ['live', '📣 Duyuru & Hediye'], ['system', '⚙️ Sistem'],
 ];
 function render() {
   const open = D.stats.reports_open;
   const act = D.wars.filter(w => w.status === 'active').length;
   $('tabs').innerHTML = TABS.map(([k, l]) =>
     `<button class="${tab === k ? 'on' : ''}" data-tab="${k}">${l}${k === 'reports' && open ? `<span class="badge">${open}</span>` : ''}${k === 'wars' && act ? `<span class="badge" style="background:var(--blue)">${act}</span>` : ''}</button>`).join('');
-  const f = { overview: vOverview, players: vPlayers, clans: vClans, wars: vWars, reports: vReports, events: vEvents }[tab];
-  const keep = document.activeElement && document.activeElement.id;
-  const pos = keep && document.activeElement.selectionStart;
+  const f = { overview: vOverview, players: vPlayers, clans: vClans, wars: vWars, reports: vReports, events: vEvents, live: vLive, system: vSystem }[tab];
+  // Keep typing focus across re-renders (search boxes).
+  const a = document.activeElement, keep = a && a.id && a.tagName === 'INPUT' && a.id;
+  const pos = keep && a.selectionStart;
   $('view').innerHTML = f();
   if (keep && $(keep)) { $(keep).focus(); try { $(keep).setSelectionRange(pos, pos); } catch (e) {} }
 }
@@ -311,19 +367,21 @@ function render() {
 function statCard(k, v, s, cls = '') {
   return `<div class="stat ${cls}"><div class="k">${k}</div><div class="v num">${v}</div>${s ? `<div class="s">${s}</div>` : ''}</div>`;
 }
+function retText(r) { return r && r.n ? `%${pct(r.back, r.n)}` : '—'; }
 
 function vOverview() {
   const s = D.stats;
-  const avg = s.today ? Math.round(s.minutes_today / s.today) : 0;
-  const clanPct = s.players ? Math.round(100 * s.in_clan / s.players) : 0;
-  const online = D.players.filter(p => status(p) === 'on');
+  const avg = s.devices_today ? Math.round(s.minutes_today / s.devices_today) : 0;
+  const online = D.devices.filter(d => isOn(d.last_seen));
+  const maxV = Math.max(1, ...D.versions.map(v => v.n)), maxL = Math.max(1, ...D.langs.map(v => v.n));
   return `
     <div class="grid">
-      ${statCard('<span class="dot on"></span> Şu an oyunda', int(s.online), 'son 5 dakikada')}
-      ${statCard('📅 Bugün oynayan', int(s.today), `${int(s.new_today)} yeni oyuncu`)}
-      ${statCard('🗓️ Son 7 gün', int(s.week), 'farklı oyuncu')}
-      ${statCard('👥 Toplam oyuncu', int(s.players), `%${clanPct} bir klanda`)}
-      ${statCard('⏱️ Bugünkü oynama', dur(s.minutes_today * 60), `oyuncu başı ort. ${dur(avg * 60)}`)}
+      ${statCard('<span class="dot on"></span> Şu an oyunda', int(s.online), `son 3 dk · ${int(s.online_players)} klan oyuncusu`, 'live')}
+      ${statCard('📅 Bugün oynayan', int(s.devices_today), `${int(s.installs_today)} yeni kurulum`)}
+      ${statCard('🗓️ Son 7 gün', int(s.devices_week), `son 30 gün: ${int(s.devices_month)}`)}
+      ${statCard('📲 Toplam kurulum', int(s.installs), `${int(s.players)} klan oyuncusu (%${pct(s.players, s.installs)})`)}
+      ${statCard('⏱️ Bugünkü oynama', dur(s.minutes_today * 60), `kişi başı ort. ${dur(avg * 60)}`)}
+      ${statCard('🔁 Ertesi gün dönen', retText(D.retention.d1), `7. gün dönen: ${retText(D.retention.d7)}`)}
       ${statCard('🛡️ Klanlar', int(s.clans), `${int(s.in_clan)} üye`)}
       ${statCard('⚔️ Savaşlar', int(s.wars_active), `devam ediyor · ${int(s.wars_done)} bitti`)}
       ${statCard('🚩 Açık şikayet', int(s.reports_open), s.reports_open ? '24 saat içinde bak!' : 'her şey temiz', s.reports_open ? 'alert' : '')}
@@ -332,14 +390,23 @@ function vOverview() {
       <div class="panel chart">
         <h2>Son 30 gün
           <span class="right"><span class="seg">
-            ${[['active', 'Oynayan'], ['new', 'Yeni'], ['minutes', 'Süre']].map(([k, l]) => `<button class="${chartKey === k ? 'on' : ''}" data-chart="${k}">${l}</button>`).join('')}
+            ${[['devices', 'Oynayan'], ['installs', 'Kurulum'], ['active', 'Klan oyuncusu'], ['minutes', 'Süre']].map(([k, l]) => `<button class="${chartKey === k ? 'on' : ''}" data-chart="${k}">${l}</button>`).join('')}
           </span></span>
         </h2>
         ${chart()}
       </div>
       <div class="panel">
         <h2><span class="dot on"></span> Şu an oyunda <span class="muted tiny">(${online.length})</span></h2>
-        <div class="list">${online.length ? online.slice(0, 12).map(playerRow).join('') : '<div class="empty">Şu an kimse oynamıyor</div>'}</div>
+        <div class="list">${online.length ? online.slice(0, 12).map(deviceRow).join('') : '<div class="empty">Şu an kimse oynamıyor</div>'}</div>
+        <div class="note">1.0.0 sürümünde isim girmeden oynayanlar sadece oyunu açtıkları an görünür. 1.0.1 ile herkes her dakika sinyal gönderecek.</div>
+      </div>
+    </div>
+    <div class="cols even">
+      <div class="panel"><h2>📱 Sürümler <span class="muted tiny">son 30 gün</span></h2>
+        ${D.versions.length ? D.versions.map(v => `<div class="hbar"><span class="l">${esc(v.v)}</span><span class="t"><div style="width:${100 * v.n / maxV}%"></div></span><span class="n">${int(v.n)} cihaz</span></div>`).join('') : '<div class="empty">—</div>'}
+      </div>
+      <div class="panel"><h2>🌍 Dil <span class="muted tiny">son 30 gün</span></h2>
+        ${D.langs.length ? D.langs.map(v => `<div class="hbar"><span class="l">${esc(LANGS[v.v] || v.v)}</span><span class="t"><div style="width:${100 * v.n / maxL}%"></div></span><span class="n">${int(v.n)} cihaz</span></div>`).join('') : '<div class="empty">—</div>'}
       </div>
     </div>
     <div class="panel feed">
@@ -353,21 +420,20 @@ function chart() {
   const vals = days.map(d => Number(d[chartKey]) || 0);
   const max = Math.max(1, ...vals);
   const W = 600, H = 170, pad = 22, bw = (W - pad) / Math.max(1, days.length);
-  const unit = { active: 'oyuncu', new: 'yeni oyuncu', minutes: '' }[chartKey];
+  const unit = { devices: 'kişi', installs: 'kurulum', active: 'klan oyuncusu' }[chartKey];
+  const lab = v => chartKey === 'minutes' ? dur(v * 60) : `${int(v)} ${unit}`;
   const bars = days.map((d, i) => {
     const h = Math.max(vals[i] ? 3 : 1, (H - 26) * vals[i] / max);
     const x = pad + i * bw + 1.5, y = H - 16 - h;
-    const lab = chartKey === 'minutes' ? dur(vals[i] * 60) : `${int(vals[i])} ${unit}`;
-    return `<rect class="bar ${i === days.length - 1 ? 'today' : ''} ${chartSel === i ? 'sel' : ''}" data-bar="${i}" x="${x}" y="${y}" width="${Math.max(2, bw - 3)}" height="${h}" rx="2"><title>${dayLabel(d.day)}: ${lab}</title></rect>`
+    return `<rect class="bar ${i === days.length - 1 ? 'today' : ''} ${chartSel === i ? 'sel' : ''}" data-bar="${i}" x="${x}" y="${y}" width="${Math.max(2, bw - 3)}" height="${h}" rx="2"><title>${dayLabel(d.day)}: ${lab(vals[i])}</title></rect>`
       + (i % 5 === (days.length - 1) % 5 ? `<text x="${x + bw / 2 - 1.5}" y="${H - 2}" fill="#8e98b5" font-size="10" text-anchor="middle">${dayLabel(d.day)}</text>` : '');
   }).join('');
-  const maxLab = chartKey === 'minutes' ? dur(max * 60) : int(max);
   const sel = chartSel != null && days[chartSel];
-  const cap = sel ? `<b>${dayLabel(sel.day)}</b>: ${int(sel.active)} oynayan · ${int(sel.new)} yeni · ${dur(sel.minutes * 60)} oynama`
-                  : `Toplam: ${chartKey === 'minutes' ? dur(vals.reduce((a, b) => a + b, 0) * 60) : int(vals.reduce((a, b) => a + b, 0))} · bir çubuğa dokun`;
+  const cap = sel ? `<b>${dayLabel(sel.day)}</b>: ${int(sel.devices)} oynayan · ${int(sel.installs)} kurulum · ${int(sel.active)} klan oyuncusu · ${dur(sel.minutes * 60)} oynama`
+                  : `Toplam: ${lab(vals.reduce((a, b) => a + b, 0))} · bir çubuğa dokun`;
   return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
       <line x1="${pad}" x2="${W}" y1="10" y2="10" stroke="#223055" stroke-dasharray="3 4"/>
-      <text x="0" y="14" fill="#8e98b5" font-size="10">${maxLab}</text>
+      <text x="0" y="14" fill="#8e98b5" font-size="10">${chartKey === 'minutes' ? dur(max * 60) : int(max)}</text>
       <line x1="${pad}" x2="${W}" y1="${H - 16}" y2="${H - 16}" stroke="#223055"/>
       ${bars}</svg><div class="cap">${cap}</div>`;
 }
@@ -378,9 +444,18 @@ function playerRow(p) {
   const st = status(p);
   return `<div class="row click" data-player="${esc(p.id)}">
     <span class="dot ${st}"></span>
-    <div class="main"><div class="name">${esc(p.name)}${clanBit(p.clan_tag, p.clan_emblem)}${p.role === 'leader' ? ' <span title="Lider">👑</span>' : ''}</div>
+    <div class="main"><div class="name">${esc(p.name)}${clanBit(p.clan_tag, p.clan_emblem)}${p.role === 'leader' ? ' <span title="Lider">👑</span>' : ''}${st === 'ban' ? ' <span class="tag red">BANLI</span>' : ''}</div>
       <div class="sub">${st === 'on' ? 'oyunda' : ago(p.last_seen)} · bugün ${dur(p.today_s)} · ${p.days} gün oynadı</div></div>
     <div class="end"><div class="big num">${fmt(p.total)}</div><div class="sub">${int(p.week_sp)} SP bu hafta</div></div>
+  </div>`;
+}
+function deviceRow(d) {
+  const on = isOn(d.last_seen);
+  return `<div class="row click" data-device="${esc(d.id)}">
+    <span class="dot ${on ? 'on' : (Date.now() - Date.parse(d.last_seen) < 86400000 ? 'today' : '')}"></span>
+    <div class="main"><div class="name">${d.name ? esc(d.name) : '<span class="muted">İsimsiz oyuncu</span>'} <span class="tag">${esc(d.version || '1.0.0')}</span>${d.lang ? `<span class="tag">${esc(d.lang.toUpperCase())}</span>` : ''}</div>
+      <div class="sub">${on ? 'oyunda' : ago(d.last_seen)} · bugün ${dur(d.today_s)} · ${int(d.days)} gün · kurulum ${ago(d.first_seen)}</div></div>
+    <div class="end"><div class="big num">${d.total ? fmt(d.total) : '—'}</div><div class="sub">${d.play_time ? dur(d.play_time) + ' oyun' : int(d.opens) + ' açılış'}</div></div>
   </div>`;
 }
 
@@ -388,7 +463,7 @@ function feedText(e) {
   const a = `<b>${esc(e.actor)}</b>`, d = e.data || {};
   const other = d.tag ? `${esc(d.emblem || '')} <b>${esc(d.tag)}</b>` : '';
   switch (e.kind) {
-    case 'register': return `🆕 ${a} oyuna katıldı`;
+    case 'register': return `🆕 ${a} klan moduna katıldı`;
     case 'created': return `🏗️ ${a} klanı kurdu`;
     case 'joined': return `👋 ${a} klana katıldı`;
     case 'left': return `🚪 ${a} klandan ayrıldı`;
@@ -411,6 +486,15 @@ function feedRow(e) {
 
 function vPlayers() {
   const q = pSearch.trim().toLocaleLowerCase('tr');
+  const seg = `<span class="seg">${[['players', `👤 Klan oyuncuları (${D.players.length})`], ['devices', `📱 Tüm cihazlar (${D.devices.length})`]]
+    .map(([k, l]) => `<button class="${pView === k ? 'on' : ''}" data-pview="${k}">${l}</button>`).join('')}</span>`;
+  if (pView === 'devices') {
+    const list = D.devices.filter(d => !q || (d.name || 'isimsiz').toLocaleLowerCase('tr').includes(q) || (d.version || '').includes(q));
+    return `<div class="panel first">
+      <div class="toolbar">${seg}<input class="in" id="pSearch" placeholder="🔍 İsim veya sürüm ara" value="${esc(pSearch)}"><button class="btn" data-csv="devices">⬇️ CSV</button></div>
+      <div class="muted tiny" style="margin-bottom:6px">Oyunu internete bağlıyken açan her telefon. İsim girmeyenler "İsimsiz oyuncu" görünür.</div>
+      <div class="list">${list.length ? list.map(deviceRow).join('') : '<div class="empty">Cihaz yok</div>'}</div></div>`;
+  }
   const sorts = {
     seen: (a, b) => Date.parse(b.last_seen) - Date.parse(a.last_seen),
     total: (a, b) => b.total - a.total,
@@ -418,17 +502,19 @@ function vPlayers() {
     today: (a, b) => b.today_s - a.today_s,
     time: (a, b) => b.total_s - a.total_s,
     new: (a, b) => Date.parse(b.created_at) - Date.parse(a.created_at),
+    banned: (a, b) => isBanned(b) - isBanned(a),
   };
   const list = D.players.filter(p => !q || p.name.toLocaleLowerCase('tr').includes(q) || (p.clan_tag || '').toLowerCase().includes(q)).sort(sorts[pSort]);
-  return `<div class="panel" style="margin-top:0">
-    <div class="toolbar">
-      <input id="pSearch" placeholder="🔍 Oyuncu veya klan etiketi ara" value="${esc(pSearch)}">
-      <select id="pSort">
-        ${[['seen', 'Son görülen'], ['total', 'En zengin'], ['week_sp', 'Haftalık savaş puanı'], ['today', 'Bugün en çok oynayan'], ['time', 'Toplam oynama süresi'], ['new', 'En yeni']]
+  return `<div class="panel first">
+    <div class="toolbar">${seg}
+      <input class="in" id="pSearch" placeholder="🔍 Oyuncu veya klan etiketi ara" value="${esc(pSearch)}">
+      <select class="in" id="pSort">
+        ${[['seen', 'Son görülen'], ['total', 'En zengin'], ['week_sp', 'Haftalık savaş puanı'], ['today', 'Bugün en çok oynayan'], ['time', 'Toplam oynama'], ['new', 'En yeni'], ['banned', 'Banlılar önce']]
           .map(([k, l]) => `<option value="${k}" ${pSort === k ? 'selected' : ''}>${l}</option>`).join('')}
       </select>
+      <button class="btn" data-csv="players">⬇️ CSV</button>
     </div>
-    <div class="muted tiny" style="margin-bottom:6px">${int(list.length)} oyuncu${D.stats.players > D.players.length ? ` (son görülen ${D.players.length} oyuncu listeleniyor)` : ''} · <span class="dot on"></span> oyunda <span class="dot today"></span> bugün oynadı</div>
+    <div class="muted tiny" style="margin-bottom:6px">${int(list.length)} oyuncu · <span class="dot on"></span> oyunda <span class="dot today"></span> bugün <span class="dot ban"></span> banlı</div>
     <div class="list">${list.length ? list.map(playerRow).join('') : '<div class="empty">Oyuncu bulunamadı</div>'}</div>
   </div>`;
 }
@@ -436,8 +522,8 @@ function vPlayers() {
 function vClans() {
   const q = cSearch.trim().toLocaleLowerCase('tr');
   const list = D.clans.filter(c => !q || c.name.toLocaleLowerCase('tr').includes(q) || c.tag.toLowerCase().includes(q));
-  return `<div class="panel" style="margin-top:0">
-    <div class="toolbar"><input id="cSearch" placeholder="🔍 Klan ara" value="${esc(cSearch)}"></div>
+  return `<div class="panel first">
+    <div class="toolbar"><input class="in" id="cSearch" placeholder="🔍 Klan ara" value="${esc(cSearch)}"></div>
     <div class="list">${list.length ? list.map((c, i) => `
       <div class="row click" data-clan="${esc(c.id)}">
         <span class="muted tiny num" style="width:22px">${i + 1}</span>
@@ -449,26 +535,32 @@ function vClans() {
   </div>`;
 }
 
-function warBlock(w) {
+function warBlock(w, withActs = true) {
   const tot = Number(w.score_a) + Number(w.score_b);
-  const pct = tot ? 100 * w.score_a / tot : 50;
+  const p = tot ? 100 * w.score_a / tot : 50;
   const lab = w.status === 'active' ? `<span class="tag green">CANLI</span> ${left(w.end_at)}`
             : w.status === 'pending' ? `<span class="tag gold">DAVET</span> ${ago(w.created_at)} gönderildi · ${w.duration_min / 60} saatlik`
+            : w.status === 'cancelled' ? `<span class="tag red">İPTAL</span> ${ago(w.end_at || w.created_at)}`
             : `<span class="tag">BİTTİ</span> ${ago(w.end_at)} · ${w.winner ? (w.winner === 'a' ? esc(w.a_tag) : esc(w.b_tag)) + ' kazandı' : 'berabere'}`;
+  const acts = !withActs ? '' : w.status === 'active'
+    ? `<button class="btn sm" data-act="end_war" data-id="${esc(w.id)}" data-name="${esc(w.a_tag)} – ${esc(w.b_tag)}">⏹️ Şimdi bitir</button><button class="btn sm danger" data-act="cancel_war" data-id="${esc(w.id)}" data-name="${esc(w.a_tag)} – ${esc(w.b_tag)}">✖ İptal</button>`
+    : w.status === 'pending' ? `<button class="btn sm danger" data-act="cancel_war" data-id="${esc(w.id)}" data-name="${esc(w.a_tag)} – ${esc(w.b_tag)}">✖ Daveti iptal et</button>` : '';
   return `<div class="war">
     <div class="vs">
       <div class="side"><span class="emb">${esc(w.a_emblem)}</span>${esc(w.a_tag)}${w.winner === 'a' ? ' 🏆' : ''}</div>
       <div class="score">${int(w.score_a)} <span class="muted">–</span> ${int(w.score_b)}</div>
       <div class="side r">${w.winner === 'b' ? '🏆 ' : ''}${esc(w.b_tag)}<span class="emb">${esc(w.b_emblem)}</span></div>
     </div>
-    ${w.status !== 'pending' ? `<div class="bar2"><div style="width:${pct}%"></div></div>` : ''}
-    <div class="sub muted tiny">${lab}${w.league ? ' · <span class="tag blue">LİG</span>' : ''}</div>
+    ${w.status === 'active' || w.status === 'finished' ? `<div class="bar2"><div style="width:${p}%"></div></div>` : ''}
+    <div class="foot tiny muted"><span>${lab}${w.league ? ' · <span class="tag blue">LİG</span>' : ''}</span>${acts ? `<span class="acts">${acts}</span>` : ''}</div>
   </div>`;
 }
 function vWars() {
-  const g = s => D.wars.filter(w => w.status === s);
-  const sec = (t, l, e) => `<div class="panel" ${t === 'Devam eden' ? 'style="margin-top:0"' : ''}><h2>${t} <span class="muted tiny">(${l.length})</span></h2>${l.length ? l.map(warBlock).join('') : `<div class="empty">${e}</div>`}</div>`;
-  return sec('Devam eden', g('active'), 'Şu an savaş yok') + sec('Bekleyen davetler', g('pending'), 'Bekleyen davet yok') + sec('Son 3 günde biten', g('finished'), 'Yakın zamanda biten savaş yok');
+  const g = (...s) => D.wars.filter(w => s.includes(w.status));
+  const sec = (t, l, e, first) => `<div class="panel ${first ? 'first' : ''}"><h2>${t} <span class="muted tiny">(${l.length})</span></h2>${l.length ? l.map(w => warBlock(w)).join('') : `<div class="empty">${e}</div>`}</div>`;
+  return sec('Devam eden', g('active'), 'Şu an savaş yok', true)
+    + `<div class="note" style="margin-top:8px">"Şimdi bitir" savaşı o anki skorla bitirir ve kupaları dağıtır. "İptal" sonuçsuz kapatır, kimse kupa kazanmaz veya kaybetmez.</div>`
+    + sec('Bekleyen davetler', g('pending'), 'Bekleyen davet yok') + sec('Son 3 gün', g('finished', 'cancelled'), 'Yakın zamanda biten savaş yok');
 }
 
 function vReports() {
@@ -476,23 +568,26 @@ function vReports() {
   const row = r => {
     const target = r.target_player ? `👤 <b>${esc(r.player_name || '(silinmiş oyuncu)')}</b>` : r.target_clan ? `🛡️ <b>${esc(r.clan_name || '(silinmiş klan)')}</b> <span class="tag">${esc(r.clan_tag || '')}</span>` : '—';
     const exists = r.target_player ? r.player_name : r.clan_name;
-    const kind = r.target_player ? 'player' : 'clan';
+    const kind = r.target_player ? 'player' : 'clan', id = esc(r.target_player || r.target_clan);
     return `<div class="row" style="align-items:flex-start">
       <div class="main"><div>${target}</div>
         <div class="sub">şikayet eden: ${esc(r.reporter || '?')} · ${ago(r.created_at)}${r.resolved_at ? ' · ✅ kapatıldı ' + ago(r.resolved_at) : ''}</div>
         ${r.reason ? `<div style="margin-top:4px;font-size:13px">“${esc(r.reason)}”</div>` : ''}
         ${!r.resolved_at ? `<div class="actions" style="border:0;padding-top:4px;margin-top:6px">
           <button class="btn good" data-act="resolve_report" data-id="${r.id}">✅ Sorun yok, kapat</button>
-          ${exists ? `<button class="btn" data-act="rename_${kind}" data-id="${esc(r.target_player || r.target_clan)}" data-name="${esc(exists)}">✏️ Adını sıfırla</button>
-          <button class="btn danger" data-act="delete_${kind}" data-id="${esc(r.target_player || r.target_clan)}" data-name="${esc(exists)}">🗑️ ${kind === 'player' ? 'Hesabı' : 'Klanı'} sil</button>` : ''}
+          ${exists ? `<button class="btn" data-${kind}="${id}">🔍 İncele</button>
+          <button class="btn" data-act="rename_${kind}" data-id="${id}" data-name="${esc(exists)}">✏️ Adını sıfırla</button>
+          ${kind === 'player' ? `<button class="btn danger" data-form="ban" data-id="${id}" data-name="${esc(exists)}">🚫 Banla</button>` : ''}
+          <button class="btn danger" data-act="delete_${kind}" data-id="${id}" data-name="${esc(exists)}">🗑️ ${kind === 'player' ? 'Hesabı' : 'Klanı'} sil</button>` : ''}
         </div>` : ''}
       </div></div>`;
   };
-  return `<div class="panel" style="margin-top:0"><h2>🚩 Açık şikayetler <span class="muted tiny">(${open.length}) · Apple'a 24 saat içinde incelenir dedik</span></h2>
+  return `<div class="panel first"><h2>🚩 Açık şikayetler <span class="muted tiny">(${open.length}) · Apple'a 24 saat içinde incelenir dedik</span></h2>
       ${open.length ? open.map(row).join('') : '<div class="empty">🎉 Açık şikayet yok</div>'}</div>
     <div class="panel"><h2>Kapatılanlar <span class="muted tiny">(${done.length})</span></h2>${done.length ? done.slice(0, 30).map(row).join('') : '<div class="empty">—</div>'}</div>`;
 }
 
+// ---- events
 function currentEvent() {
   const live = D.events.find(e => e.live && EV[e.key]);
   if (live) return { ...EV[live.key], id: live.id, ends: live.ends_at, config: live.config, server: true };
@@ -518,7 +613,12 @@ function vEvents() {
   const nextIdx = Math.floor((Date.now() - EVENT_EPOCH) / WEEK_MS) + 1;
   const next = EVENTS[((nextIdx % EVENTS.length) + EVENTS.length) % EVENTS.length];
   const pick = evPick && EV[evPick];
-  return `<div class="panel" style="margin-top:0">
+  const upcoming = D.events.filter(e => e.upcoming), past = D.events.filter(e => !e.upcoming && !e.live);
+  const evRow = e => `<div class="row"><span class="emb">${EV[e.key] ? EV[e.key].icon : '❓'}</span>
+      <div class="main"><div class="name">${esc(EV[e.key] ? EV[e.key].name : e.key)}${e.live ? ' <span class="tag green">CANLI</span>' : e.upcoming ? ' <span class="tag gold">PLANLANDI</span>' : ''}</div>
+      <div class="sub">${dateTime(e.starts_at)} → ${dateTime(e.ends_at)}${cfgText(e.config)}</div></div>
+      ${e.upcoming ? `<div class="acts"><button class="btn sm danger" data-act="delete_event" data-id="${e.id}" data-name="${esc(EV[e.key] ? EV[e.key].name : e.key)}">Sil</button></div>` : ''}</div>`;
+  return `<div class="panel first">
       <h2>Şu anki etkinlik</h2>
       <div class="ev-now"><span class="ic">${cur.icon}</span>
         <div class="main" style="flex:1"><b style="font-size:17px">${esc(cur.name)}</b>
@@ -531,33 +631,156 @@ function vEvents() {
     <div class="panel">
       <h2>🎉 Özel etkinlik başlat <span class="muted tiny">uygulama güncellemesi gerekmez, oyunculara hemen yansır</span></h2>
       <div class="ev-grid">${EVENTS.map(e => `<button class="ev-opt ${evPick === e.key ? 'on' : ''}" data-ev="${e.key}"><b>${e.icon} ${esc(e.name)}</b><small>${esc(e.desc)}</small></button>`).join('')}</div>
-      <div class="toolbar" style="margin-top:12px;align-items:flex-end">
+      <div class="form two" style="margin-top:12px">
+        <label class="field">Ne zaman
+          <select class="in" id="evWhen"><option value="now" ${evWhen === 'now' ? 'selected' : ''}>Hemen başlasın</option><option value="later" ${evWhen === 'later' ? 'selected' : ''}>İleri bir tarihte</option></select></label>
+        <label class="field ${evWhen === 'later' ? '' : 'hidden'}">Başlangıç (TR saati)
+          <input class="in" type="datetime-local" id="evAt"></label>
         <label class="field">Süre
-          <select id="evHours">${[[6, '6 saat'], [24, '1 gün'], [48, '2 gün'], [72, '3 gün'], [168, '1 hafta']].map(([h, l]) => `<option value="${h}" ${evHours === h ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+          <select class="in" id="evHours">${DURATIONS.map(([h, l]) => `<option value="${h}" ${evHours === h ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
         <label class="field">Güç
-          <select id="evStrong"><option value="0" ${evStrong ? '' : 'selected'}>Normal</option><option value="1" ${evStrong ? 'selected' : ''}>💪 2 kat güçlü</option></select></label>
-        <button class="btn primary" id="evStart" ${pick ? '' : 'disabled'}>${pick ? `${pick.icon} ${esc(pick.name)} başlat` : 'Önce etkinlik seç'}</button>
+          <select class="in" id="evStrong"><option value="0" ${evStrong ? '' : 'selected'}>Normal</option><option value="1" ${evStrong ? 'selected' : ''}>💪 2 kat güçlü</option></select></label>
       </div>
-      <p class="muted tiny">Başlattığın etkinlik, o an süren etkinliğin yerine geçer. Süre bitince otomatik haftalık sıraya dönülür.</p>
+      <div class="toolbar" style="margin-top:12px"><button class="btn primary" id="evStart" ${pick ? '' : 'disabled'}>${pick ? `${pick.icon} ${esc(pick.name)} ${evWhen === 'later' ? 'planla' : 'başlat'}` : 'Önce etkinlik seç'}</button></div>
+      <p class="muted tiny">Hemen başlayan etkinlik, o an süren etkinliğin yerine geçer. Süre bitince otomatik haftalık sıraya dönülür.</p>
     </div>
+    ${upcoming.length ? `<div class="panel"><h2>📅 Planlanan etkinlikler</h2>${upcoming.map(evRow).join('')}</div>` : ''}
     <div class="panel"><h2>Geçmiş özel etkinlikler</h2>
-      ${D.events.length ? D.events.map(e => `<div class="row"><span class="emb">${EV[e.key] ? EV[e.key].icon : '❓'}</span>
-        <div class="main"><div class="name">${esc(EV[e.key] ? EV[e.key].name : e.key)}${e.live ? ' <span class="tag green">CANLI</span>' : ''}</div>
-        <div class="sub">${new Date(e.starts_at).toLocaleString('tr-TR', { dateStyle: 'short', timeStyle: 'short' })} → ${new Date(e.ends_at).toLocaleString('tr-TR', { dateStyle: 'short', timeStyle: 'short' })}${cfgText(e.config)}</div></div></div>`).join('')
-        : '<div class="empty">Henüz özel etkinlik başlatılmadı</div>'}
+      ${past.length ? past.map(evRow).join('') : '<div class="empty">Henüz geçmiş özel etkinlik yok</div>'}</div>`;
+}
+
+// ---- announcement, gifts, forced update
+function vLive() {
+  const a = D.settings.announce, mv = D.settings.min_version;
+  const gifts = D.gifts;
+  return `<div class="note" style="margin-top:0">📱 Duyuru, hediye ve güncelleme uyarısı oyunun <b>1.0.1 ve sonraki</b> sürümlerinde görünür. 1.0.0'daki oyuncular göremez.</div>
+    <div class="panel">
+      <h2>📣 Oyun içi duyuru ${a ? '<span class="tag green">YAYINDA</span>' : '<span class="tag">KAPALI</span>'}</h2>
+      ${a ? `<div class="ann-prev ${esc(a.style || 'info')}">${{ info: '📣', warn: '⚠️', gift: '🎉' }[a.style] || '📣'} <span>${esc(a.tr || a.en)}</span></div>
+        <p class="muted tiny">İngilizce: ${esc(a.en || '—')}</p>` : '<p class="muted tiny">Oyunun üst kısmında, haber bandının altında ince bir şerit olarak görünür. Oyuncu dokununca kapanır.</p>'}
+      <div class="form two">
+        <label class="field">Türkçe metin<textarea class="in" id="annTr" maxlength="160" placeholder="Örn: Hafta sonu çift savaş puanı başladı!">${esc(a ? a.tr : '')}</textarea></label>
+        <label class="field">İngilizce metin<textarea class="in" id="annEn" maxlength="160" placeholder="E.g. Double war points all weekend!">${esc(a ? a.en : '')}</textarea></label>
+        <label class="field">Tür<select class="in" id="annStyle">${Object.entries(ANN_STYLES).map(([k, l]) => `<option value="${k}" ${a && a.style === k ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+      </div>
+      <div class="toolbar" style="margin-top:10px"><button class="btn primary" id="annSave">📣 Yayınla</button>${a ? '<button class="btn danger" id="annOff">Kaldır</button>' : ''}</div>
+    </div>
+    <div class="panel">
+      <h2>🎁 Herkese hediye gönder</h2>
+      <p class="muted tiny" style="margin-top:0">Oyunu açan herkes bir kere alabilir: süre bitene kadar yeni gelenler dahil. Tek bir oyuncuya hediye için oyuncunun sayfasını aç.</p>
+      ${giftForm('g')}
+      <div class="toolbar" style="margin-top:10px"><button class="btn primary" data-gift="all">🎁 Herkese gönder</button></div>
+    </div>
+    <div class="panel"><h2>Gönderilen hediyeler</h2>
+      ${gifts.length ? gifts.map(g => `<div class="row"><span class="emb">🎁</span>
+        <div class="main"><div class="name">${esc(g.title || 'Hediye')} ${g.live ? '<span class="tag green">AKTİF</span>' : '<span class="tag">BİTTİ</span>'} ${g.target ? `<span class="tag purple">👤 ${esc(g.target_name || 'tek oyuncu')}</span>` : '<span class="tag blue">HERKESE</span>'}</div>
+        <div class="sub">${esc(rewardText(g.reward))} · ${int(g.claims)} kişi aldı · ${g.live ? left(g.expires_at) : ago(g.expires_at) + ' bitti'}</div></div>
+        ${g.live ? `<div class="acts"><button class="btn sm danger" data-act="stop_gift" data-id="${g.id}" data-name="${esc(g.title || 'Hediye')}">Durdur</button></div>` : ''}</div>`).join('')
+        : '<div class="empty">Henüz hediye gönderilmedi</div>'}
+    </div>
+    <div class="panel">
+      <h2>⬆️ Zorunlu güncelleme uyarısı ${mv ? `<span class="tag gold">EN AZ ${esc(mv)}</span>` : '<span class="tag">KAPALI</span>'}</h2>
+      <p class="muted tiny" style="margin-top:0">Buraya yazdığın sürümden eski oyunlarda "Yeni sürüm hazır, App Store'dan güncelle" penceresi çıkar. Yeni sürüm App Store'da yayınlandıktan sonra kullan.</p>
+      <div class="toolbar"><input class="in" id="minVer" placeholder="örn. 1.0.2" value="${esc(mv || '')}" style="max-width:160px"><button class="btn primary" id="mvSave">Kaydet</button>${mv ? '<button class="btn danger" id="mvOff">Kapat</button>' : ''}</div>
     </div>`;
 }
+function giftForm(p, fixedTitle) {
+  return `<div class="form two">
+    <label class="field">Başlık<input class="in" id="${p}Title" maxlength="60" placeholder="Örn: Açılış hediyesi" value="${esc(fixedTitle || '')}"></label>
+    <label class="field">Süre<select class="in" id="${p}Hours">${[[24, '1 gün'], [72, '3 gün'], [168, '1 hafta'], [720, '30 gün']].map(([h, l]) => `<option value="${h}" ${h === 72 ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+    <label class="field full">Mesaj<textarea class="in" id="${p}Msg" maxlength="300" placeholder="Örn: Oyunumuzu oynadığın için teşekkürler!"></textarea></label>
+    <label class="field">💵 Nakit (gelir karşılığı)<select class="in" id="${p}Cash">${[[0, 'Yok'], [30, '30 dakikalık'], [60, '1 saatlik'], [120, '2 saatlik'], [240, '4 saatlik'], [480, '8 saatlik'], [1440, '1 günlük']].map(([v, l]) => `<option value="${v}" ${v === 60 ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+    <label class="field">🃏 Kart paketi<select class="in" id="${p}Pack"><option value="">Yok</option>${Object.entries(PACKS).map(([k, l]) => `<option value="${k}">${l}</option>`).join('')}</select></label>
+    <label class="field">🏅 İtibar<select class="in" id="${p}Rep">${[0, 1, 2, 3, 5, 10, 25, 50].map(v => `<option value="${v}">${v || 'Yok'}</option>`).join('')}</select></label>
+    <label class="field">🐂 Boğa koşusu (x2 gelir)<select class="in" id="${p}Boost">${[[0, 'Yok'], [300, '5 dk'], [900, '15 dk'], [1800, '30 dk'], [3600, '60 dk']].map(([v, l]) => `<option value="${v}">${l}</option>`).join('')}</select></label>
+  </div>`;
+}
+function readGift(p) {
+  return {
+    title: $(p + 'Title').value.trim(), message: $(p + 'Msg').value.trim(), hours: +$(p + 'Hours').value,
+    reward: { cash: +$(p + 'Cash').value, pack: $(p + 'Pack').value || null, rep: +$(p + 'Rep').value, boost: +$(p + 'Boost').value },
+  };
+}
+
+// ---- system
+function vSystem() {
+  const s = D.system, mb = s.db_bytes / 1048576, lim = 500;
+  return `<div class="cols even">
+    <div class="panel first"><h2>💾 Sunucu kullanımı</h2>
+      <div class="meter"><div style="width:${Math.min(100, 100 * mb / lim)}%;${mb > lim * 0.8 ? 'background:var(--red)' : ''}"></div></div>
+      <div class="tiny muted">${mb.toFixed(1)} MB / ${lim} MB (ücretsiz plan sınırı) · bulut kayıtlar ${(s.saves_bytes / 1048576).toFixed(1)} MB</div>
+      <div class="kv">${Object.entries({ players: 'oyuncu', devices: 'cihaz', clans: 'klan', wars: 'savaş', clan_events: 'klan olayı', saves: 'bulut kayıt', device_days: 'günlük kayıt', reports: 'şikayet' })
+        .map(([k, l]) => `<div><b class="num">${int(s.rows[k])}</b><span>${l}</span></div>`).join('')}</div>
+      <div class="note">Supabase ücretsiz planı 7 gün hiç kullanılmazsa projeyi uyutur. Oyuncular oynadıkça sorun olmaz; uyursa Supabase panelinden tek tıkla uyandırılır.</div>
+    </div>
+    <div class="panel first"><h2>🤬 Yasaklı kelimeler <span class="muted tiny">oyuncu ve klan adlarında</span></h2>
+      <p class="muted tiny" style="margin-top:0">Hazır küfür listesine ek olarak buraya yazdıkların da engellenir (büyük/küçük harf, Türkçe karakter ve 0/1/3/4 gibi hileler dahil). Mevcut isimleri değiştirmez, yeni isimleri engeller.</p>
+      <div class="toolbar"><input class="in" id="wordIn" placeholder="yeni kelime"><button class="btn primary" id="wordAdd">Ekle</button></div>
+      <div>${D.bad_words.length ? D.bad_words.map(w => `<span class="tag" style="margin:3px;padding:3px 8px;font-size:12px">${esc(w)} <a href="#" data-act="remove_word" data-id="${esc(w)}" data-name="${esc(w)}" style="color:var(--red);text-decoration:none">✕</a></span>`).join('') : '<span class="muted tiny">Ek kelime yok</span>'}</div>
+    </div>
+  </div>
+  <div class="cols even">
+    <div class="panel"><h2>👑 Yöneticiler</h2>
+      ${D.admins.map(a => `<div class="row"><div class="main"><div class="name">${esc(a.email)}${a.me ? ' <span class="tag green">SEN</span>' : ''}</div><div class="sub">${ago(a.created_at)} eklendi</div></div>
+        ${a.me ? '' : `<div class="acts"><button class="btn sm danger" data-act="remove_admin" data-id="${esc(a.email)}" data-name="${esc(a.email)}">Çıkar</button></div>`}</div>`).join('')}
+      <div class="toolbar" style="margin-top:10px"><input class="in" id="adminIn" type="email" placeholder="e-posta"><button class="btn primary" id="adminAdd">Yönetici ekle</button></div>
+      <p class="muted tiny">Önce Supabase › Authentication › Add user ile o e-postaya hesap açılmalı.</p>
+    </div>
+    <div class="panel"><h2>📜 Yönetici işlemleri <span class="muted tiny">son 100</span></h2>
+      <div class="list">${D.log.length ? D.log.map(l => `<div class="row logrow"><span class="t muted tiny" style="width:70px;flex:none">${ago(l.at).replace(' önce', '')}</span>
+        <div class="main">${esc(ACT_NAMES[l.action] || l.action)} <code>${esc(l.detail && (l.detail.name || l.detail.key || l.detail.title || l.detail.word || l.detail.email) || '')}</code><div class="sub">${esc(l.admin || '')}</div></div></div>`).join('')
+        : '<div class="empty">Henüz işlem yok</div>'}</div>
+    </div>
+  </div>`;
+}
+const ACT_NAMES = {
+  resolve_report: '✅ Şikayet kapatıldı', rename_player: '✏️ Oyuncu adı değişti', ban_player: '🚫 Oyuncu banlandı', unban_player: '✅ Ban kaldırıldı',
+  kick_player: '🥾 Klandan atıldı', make_leader: '👑 Lider değişti', reset_week_sp: '🔄 Haftalık SP sıfırlandı', delete_player: '🗑️ Hesap silindi',
+  rename_clan: '✏️ Klan adı değişti', set_emblem: '🎨 Amblem değişti', set_trophies: '🏆 Kupa değişti', set_clan_open: '🔓 Klan erişimi değişti',
+  set_clan_league: '⚔️ Lig ayarı değişti', delete_clan: '🗑️ Klan silindi', end_war: '⏹️ Savaş bitirildi', cancel_war: '✖ Savaş iptal',
+  start_event: '🎉 Etkinlik başlatıldı', stop_event: '⏹️ Etkinlik durduruldu', delete_event: '🗑️ Etkinlik silindi', set_setting: '⚙️ Ayar değişti',
+  create_gift: '🎁 Hediye gönderildi', stop_gift: '⏹️ Hediye durduruldu', add_word: '🤬 Kelime eklendi', remove_word: '🤬 Kelime çıkarıldı',
+  add_admin: '👑 Yönetici eklendi', remove_admin: '👑 Yönetici çıkarıldı',
+};
 
 // ------------------------------------------------------------- detail sheets
 function sheet(html) {
   $('modal').innerHTML = `<div class="modal" data-close="1"><div class="sheet"><button class="btn close" data-close="1">✕</button>${html}</div></div>`;
 }
+// The clan sheet stays open (re-rendered) after changing one of its settings.
+let sheetClan = null;
+const closeSheet = () => { $('modal').innerHTML = ''; sheetClan = null; };
+
+function saveSummary(save) {
+  if (!save) return '<p class="muted tiny">Bulut kaydı yok (oyuncu henüz yedeklenmemiş).</p>';
+  let S;
+  try { S = JSON.parse(save.data); } catch (e) { return '<p class="muted tiny">Kayıt okunamadı.</p>'; }
+  const sum = o => Object.values(o || {}).reduce((a, b) => a + (Number(b) || 0), 0);
+  const cnt = o => Object.keys(o || {}).filter(k => o[k]).length;
+  const stocks = Object.values(S.stocks || {}).filter(x => x && x.sh > 0).length;
+  const st = S.stats || {};
+  return `<div class="kv">
+    <div><b class="num">${fmt(S.cash)}</b><span>nakit</span></div>
+    <div><b class="num">${fmt(S.runEarned)}</b><span>bu fonda kazanç</span></div>
+    <div><b class="num">${int((S.rep || 0) + (S.repExtra || 0))}</b><span>itibar (${int(S.repSpent || 0)} harcandı)</span></div>
+    <div><b class="num">${int(sum(S.staff))}</b><span>çalışan</span></div>
+    <div><b class="num">${int(cnt(S.upgrades))}</b><span>yükseltme</span></div>
+    <div><b class="num">${int(stocks)}</b><span>hissede pozisyon</span></div>
+    <div><b class="num">${int(cnt(S.cards))} / 19</b><span>yönetici kartı</span></div>
+    <div><b class="num">${int(cnt(S.ach))}</b><span>başarım</span></div>
+    <div><b class="num">${int(st.taps)}</b><span>dokunuş</span></div>
+    <div><b class="num">${int(st.trades)}</b><span>işlem</span></div>
+    <div><b>${dur(st.playTime)}</b><span>oyun süresi</span></div>
+    <div><b>${S.daily ? S.daily.idx + '. gün' : '—'}</b><span>giriş serisi</span></div>
+  </div><p class="muted tiny">Bulut kaydı ${ago(save.updated_at)} alındı.</p>`;
+}
+
 async function openPlayer(id) {
   sheet('<div class="spin" style="margin:40px auto"></div>');
   try {
     const r = await rpc('bb_admin_player', { p_id: id });
-    const p = r.player, row = D.players.find(x => x.id === id) || {};
-    // Last 30 days, including the ones without play.
+    const p = r.player, row = D.players.find(x => x.id === id) || { last_seen: p.last_seen };
+    const ban = { banned_until: r.banned_until };
     const byDay = Object.fromEntries(r.days.map(d => [d.day, d.seconds]));
     const t0 = Date.parse(D.today + 'T12:00:00Z');
     const days = Array.from({ length: 30 }, (_, i) => {
@@ -565,102 +788,242 @@ async function openPlayer(id) {
       return { day, seconds: byDay[day] || 0 };
     });
     const max = Math.max(1, ...days.map(d => d.seconds));
-    sheet(`<h3>${esc(p.name)}${p.clan ? clanBit(p.clan.tag, p.clan.emblem) : ''}</h3>
-      <div class="muted tiny">${status(row) === 'on' ? '🟢 şu an oyunda' : 'son görülme ' + ago(p.last_seen)} · katılma ${new Date(p.created_at).toLocaleDateString('tr-TR')}${p.role === 'leader' ? ' · 👑 klan lideri' : ''}</div>
+    const dev = r.devices[0];
+    const nm = esc(p.name), pid = esc(p.id);
+    sheet(`<h3>${nm}${p.clan ? clanBit(p.clan.tag, p.clan.emblem) : ''}</h3>
+      <div class="muted tiny">${isOn(p.last_seen) ? '🟢 şu an oyunda' : 'son görülme ' + ago(p.last_seen)} · katılma ${new Date(p.created_at).toLocaleDateString('tr-TR')}${p.role === 'leader' ? ' · 👑 klan lideri' : ''}${dev ? ` · 📱 ${esc(dev.version || '1.0.0')} ${esc((dev.lang || '').toUpperCase())}` : ''}</div>
+      ${isBanned(ban) ? `<div class="banbox">🚫 Banlı (${banText(ban)})${r.ban_reason ? ': ' + esc(r.ban_reason) : ''}</div>` : ''}
       <div class="kv">
         <div><b class="num">${fmt(p.total)}</b><span>toplam kazanç</span></div>
         <div><b class="num">${fmt(p.net)}</b><span>net değer</span></div>
         <div><b class="num">${fmt(p.income)}/sn</b><span>gelir</span></div>
-        <div><b class="num">${int(p.rep)}</b><span>itibar</span></div>
         <div><b class="num">${int(p.week_sp)}</b><span>savaş puanı (hafta)</span></div>
         <div><b class="num">${int(p.sp)}</b><span>savaş puanı (toplam)</span></div>
         <div><b>${dur(row.today_s)}</b><span>bugün oynadı</span></div>
         <div><b>${dur(row.total_s)}</b><span>toplam oynama</span></div>
         <div><b>${int(row.days)}</b><span>farklı gün</span></div>
-        <div><b>${r.devices}</b><span>cihaz</span></div>
-        <div><b>${r.save_at ? ago(r.save_at) : 'yok'}</b><span>bulut kayıt</span></div>
+        <div><b>${r.devices.length || 1}</b><span>cihaz</span></div>
         <div><b style="${r.reported ? 'color:var(--red)' : ''}">${r.reported}</b><span>hakkında şikayet</span></div>
       </div>
       <div class="muted tiny">Son 30 gün oynama süresi</div>
       <div class="mini-bars">${days.map(d => `<div style="height:${Math.max(2, 100 * d.seconds / max)}%;${d.seconds ? '' : 'opacity:.25'}" title="${dayLabel(d.day)}: ${dur(d.seconds)}"></div>`).join('')}</div>
+      <h4>💾 Oyun durumu (bulut kaydı)</h4>${saveSummary(r.save)}
       ${p.badges && p.badges.length ? `<p class="tiny muted">Sezon rozetleri: ${p.badges.map(b => `${TIERS[b.tier] ? TIERS[b.tier][1] : ''} ${esc(b.season)}`).join(' · ')}</p>` : ''}
-      <h3 style="font-size:15px;margin-top:16px">⚔️ Savaşları</h3>
+      <h4>⚔️ Savaşları</h4>
       <div class="list">${r.wars.length ? r.wars.map(w => `<div class="row"><div class="main"><div>${esc(w.a_tag)} <span class="num">${int(w.score_a)}–${int(w.score_b)}</span> ${esc(w.b_tag)}</div>
         <div class="sub">${w.end_at ? ago(w.end_at) : ''}</div></div>
         <div class="end"><div class="big num">${int(w.points)} SP</div><div class="sub">${{ win: '🏆 kazandı', loss: 'kaybetti', draw: 'berabere' }[w.result] || 'devam ediyor'}</div></div></div>`).join('')
         : '<div class="empty">Hiç savaşa katılmadı</div>'}</div>
       <div class="actions">
-        <button class="btn" data-act="rename_player" data-id="${esc(p.id)}" data-name="${esc(p.name)}">✏️ Adını sıfırla</button>
-        <button class="btn danger" data-act="delete_player" data-id="${esc(p.id)}" data-name="${esc(p.name)}">🗑️ Hesabı sil</button>
+        <button class="btn" data-form="rename_player" data-id="${pid}" data-name="${nm}">✏️ İsim değiştir</button>
+        <button class="btn good" data-form="gift" data-id="${pid}" data-name="${nm}">🎁 Hediye gönder</button>
+        ${p.clan ? `<button class="btn" data-act="kick_player" data-id="${pid}" data-name="${nm}">🥾 Klandan at</button>` : ''}
+        ${p.clan && p.role !== 'leader' ? `<button class="btn" data-act="make_leader" data-id="${pid}" data-name="${nm}">👑 Lider yap</button>` : ''}
+        <button class="btn" data-act="reset_week_sp" data-id="${pid}" data-name="${nm}">🔄 Haftalık SP sıfırla</button>
+        ${isBanned(ban) ? `<button class="btn good" data-act="unban_player" data-id="${pid}" data-name="${nm}">✅ Banı kaldır</button>`
+                        : `<button class="btn danger" data-form="ban" data-id="${pid}" data-name="${nm}">🚫 Banla</button>`}
+        <button class="btn danger" data-act="delete_player" data-id="${pid}" data-name="${nm}">🗑️ Hesabı sil</button>
       </div>`);
   } catch (e) { sheet(`<p class="err">${esc(errText(e))}</p>`); }
 }
+
+function openDevice(id) {
+  const d = D.devices.find(x => x.id === id);
+  if (!d) return;
+  if (d.player_id) return openPlayer(d.player_id);
+  sheet(`<h3>📱 İsimsiz oyuncu</h3>
+    <div class="muted tiny">${isOn(d.last_seen) ? '🟢 şu an oyunda' : 'son görülme ' + ago(d.last_seen)} · kurulum ${dateTime(d.first_seen)}</div>
+    <div class="kv">
+      <div><b>${esc(d.version || '1.0.0')}</b><span>sürüm</span></div>
+      <div><b>${esc(LANGS[d.lang] || d.lang || '—')}</b><span>dil</span></div>
+      <div><b>${esc(d.platform || '—')}</b><span>platform</span></div>
+      <div><b class="num">${d.total ? fmt(d.total) : '—'}</b><span>toplam kazanç</span></div>
+      <div><b class="num">${d.income ? fmt(d.income) + '/sn' : '—'}</b><span>gelir</span></div>
+      <div><b>${d.play_time ? dur(d.play_time) : '—'}</b><span>oyun süresi</span></div>
+      <div><b>${dur(d.today_s)}</b><span>bugün</span></div>
+      <div><b>${int(d.days)}</b><span>farklı gün</span></div>
+      <div><b>${int(d.opens)}</b><span>açılış</span></div>
+    </div>
+    <p class="muted tiny">Bu oyuncu klan sekmesinde isim almamış, sadece tek başına oynuyor.${d.version ? '' : ' 1.0.0 sürümü kazanç ve süre göndermez.'}</p>
+    <div class="actions"><button class="btn good" data-form="gift" data-id="${esc(d.id)}" data-name="İsimsiz oyuncu">🎁 Hediye gönder</button></div>`);
+}
+
 function openClan(id) {
   const c = D.clans.find(x => x.id === id);
   if (!c) return;
+  sheetClan = id;
   const members = D.players.filter(p => p.clan_id === id).sort((a, b) => (b.role === 'leader') - (a.role === 'leader') || b.week_sp - a.week_sp);
   const wars = D.wars.filter(w => w.a_tag === c.tag || w.b_tag === c.tag);
-  sheet(`<h3>${esc(c.emblem)} ${esc(c.name)} <span class="tag">${esc(c.tag)}</span></h3>
-    <div class="muted tiny">kuruldu ${new Date(c.created_at).toLocaleDateString('tr-TR')} · ${c.open ? 'herkese açık' : '🔒 davetle'}${c.auto_war ? ' · lig savaşları açık' : ''}</div>
+  const cid = esc(c.id), nm = esc(c.name);
+  sheet(`<h3>${esc(c.emblem)} ${nm} <span class="tag">${esc(c.tag)}</span></h3>
+    <div class="muted tiny">kuruldu ${new Date(c.created_at).toLocaleDateString('tr-TR')} · davet kodu <b>${esc(c.code)}</b></div>
     <div class="kv">
       <div><b>${int(c.members)}</b><span>üye</span></div>
-      <div><b>${c.level}</b><span>seviye</span></div>
+      <div><b>${c.level}</b><span>seviye (${int(c.xp)} XP)</span></div>
       <div><b>${TIERS[c.tier] ? TIERS[c.tier][1] + ' ' + TIERS[c.tier][0] : c.tier}</b><span>lig</span></div>
       <div><b class="num">${int(c.trophies)}</b><span>kupa</span></div>
-      <div><b class="num">${c.wins} / ${c.losses} / ${c.draws}</b><span>galibiyet / mağlubiyet / beraberlik</span></div>
+      <div><b class="num">${c.wins} / ${c.losses} / ${c.draws}</b><span>G / M / B</span></div>
       <div><b class="num">${int(c.week_sp)}</b><span>savaş puanı (hafta)</span></div>
     </div>
-    <h3 style="font-size:15px">Üyeler</h3>
-    <div class="list">${members.length ? members.map(playerRow).join('') : '<div class="empty">Üye listesi yok</div>'}</div>
-    ${wars.length ? `<h3 style="font-size:15px;margin-top:14px">Savaşlar</h3>${wars.map(warBlock).join('')}` : ''}
+    <div class="toolbar">
+      <button class="btn" data-act="set_clan_open" data-id="${cid}" data-name="${nm}" data-val="${!c.open}">${c.open ? '🔓 Herkese açık → kapat' : '🔒 Davetle → herkese aç'}</button>
+      <button class="btn" data-act="set_clan_league" data-id="${cid}" data-name="${nm}" data-val="${!c.auto_war}">${c.auto_war ? '⚔️ Lig açık → kapat' : '⚔️ Lig kapalı → aç'}</button>
+      <button class="btn" data-form="trophies" data-id="${cid}" data-name="${nm}" data-val="${c.trophies}">🏆 Kupayı değiştir</button>
+    </div>
+    <h4>🎨 Amblem</h4>
+    <div class="emblems">${EMBLEMS.map(e => `<button class="${e === c.emblem ? 'on' : ''}" data-act="set_emblem" data-id="${cid}" data-name="${nm}" data-val="${e}">${e}</button>`).join('')}</div>
+    <h4>Üyeler</h4>
+    <div class="list">${members.length ? members.map(p => `<div class="row"><span class="dot ${status(p)}"></span>
+      <div class="main click" data-player="${esc(p.id)}" style="cursor:pointer"><div class="name">${esc(p.name)}${p.role === 'leader' ? ' 👑' : ''}</div><div class="sub">${int(p.week_sp)} SP bu hafta · ${ago(p.last_seen)}</div></div>
+      <div class="acts">${p.role !== 'leader' ? `<button class="btn sm" data-act="make_leader" data-id="${esc(p.id)}" data-name="${esc(p.name)}">👑</button>` : ''}<button class="btn sm danger" data-act="kick_player" data-id="${esc(p.id)}" data-name="${esc(p.name)}">🥾</button></div></div>`).join('')
+      : '<div class="empty">Üye yok</div>'}</div>
+    ${wars.length ? `<h4>Savaşlar</h4>${wars.map(w => warBlock(w)).join('')}` : ''}
     <div class="actions">
-      <button class="btn" data-act="rename_clan" data-id="${esc(c.id)}" data-name="${esc(c.name)}">✏️ Adını sıfırla</button>
-      <button class="btn danger" data-act="delete_clan" data-id="${esc(c.id)}" data-name="${esc(c.name)}">🗑️ Klanı sil</button>
+      <button class="btn" data-form="rename_clan" data-id="${cid}" data-name="${nm}" data-tag="${esc(c.tag)}">✏️ Ad / etiket değiştir</button>
+      <button class="btn" data-act="rename_clan" data-id="${cid}" data-name="${nm}">🎲 Rastgele ada sıfırla</button>
+      <button class="btn danger" data-act="delete_clan" data-id="${cid}" data-name="${nm}">🗑️ Klanı sil</button>
     </div>`);
+}
+
+// Small forms that need typed input (rename, ban, gift, trophies).
+function openForm(kind, id, name, el) {
+  const back = `<div class="actions"><button class="btn" data-close="1">Vazgeç</button><button class="btn primary" id="formOk">Kaydet</button></div>`;
+  let html = '', run;
+  if (kind === 'rename_player') {
+    html = `<h3>✏️ ${esc(name)}</h3><div class="form" style="margin-top:12px"><label class="field">Yeni isim (boş bırakırsan "Oyuncu_XXXX" olur)<input class="in" id="fName" maxlength="16" value="${esc(name)}"></label></div>`;
+    run = () => act('rename_player', id, name, { name: $('fName').value.trim() }, true);
+  } else if (kind === 'rename_clan') {
+    html = `<h3>✏️ ${esc(name)}</h3><div class="form two" style="margin-top:12px">
+      <label class="field">Klan adı (3-20)<input class="in" id="fName" maxlength="20" value="${esc(name)}"></label>
+      <label class="field">Etiket (2-5)<input class="in" id="fTag" maxlength="5" value="${esc(el.dataset.tag || '')}" style="text-transform:uppercase"></label></div>`;
+    run = () => act('rename_clan', id, name, { name: $('fName').value.trim(), tag: $('fTag').value.trim() }, true);
+  } else if (kind === 'trophies') {
+    html = `<h3>🏆 ${esc(name)}</h3><div class="form" style="margin-top:12px"><label class="field">Kupa sayısı (lig: 100 Gümüş, 250 Altın, 500 Elmas, 900 Baron)<input class="in" id="fNum" type="number" min="0" value="${esc(el.dataset.val)}"></label></div>`;
+    run = () => act('set_trophies', id, name, { trophies: Math.max(0, parseInt($('fNum').value, 10) || 0) }, true);
+  } else if (kind === 'ban') {
+    html = `<h3>🚫 ${esc(name)} banlansın</h3>
+      <p class="muted tiny">Banlı oyuncu klanından çıkarılır; klana katılamaz, klan kuramaz, ismini değiştiremez ve sıralamalarda görünmez. Tek başına oynamaya devam edebilir.</p>
+      <div class="form two"><label class="field">Süre<select class="in" id="fDays">${[['1', '1 gün'], ['3', '3 gün'], ['7', '1 hafta'], ['30', '30 gün'], ['', 'Kalıcı']].map(([v, l]) => `<option value="${v}" ${v === '7' ? 'selected' : ''}>${l}</option>`).join('')}</select></label>
+      <label class="field">Sebep (sadece sen görürsün)<input class="in" id="fReason" maxlength="200" placeholder="örn. uygunsuz isim, hile"></label></div>`;
+    run = () => act('ban_player', id, name, { days: $('fDays').value ? +$('fDays').value : null, reason: $('fReason').value.trim() }, true);
+  } else if (kind === 'gift') {
+    html = `<h3>🎁 ${esc(name)} için hediye</h3><div style="margin-top:12px">${giftForm('pg', 'Sana özel hediye')}</div>`;
+    run = () => act('create_gift', null, name, Object.assign(readGift('pg'), { target: id }), true);
+  }
+  sheet(html + back);
+  $('formOk').onclick = run;
+  const f = document.querySelector('.sheet input'); if (f) f.focus();
 }
 
 // ------------------------------------------------------------- actions
 const CONFIRM = {
-  resolve_report: () => null,
   rename_player: n => `"${n}" adlı oyuncunun adı "Oyuncu_XXXX" olarak sıfırlansın mı?`,
   delete_player: n => `"${n}" adlı oyuncunun hesabı KALICI olarak silinsin mi?\n\nKlanından çıkar, bulut kaydı silinir. Geri alınamaz.`,
   rename_clan: n => `"${n}" klanının adı ve etiketi rastgele bir adla sıfırlansın mı?`,
   delete_clan: n => `"${n}" klanı KALICI olarak silinsin mi?\n\nÜyeler klansız kalır, savaş geçmişi silinir. Geri alınamaz.`,
   stop_event: n => `"${n}" etkinliği şimdi durdurulsun mu? Oyun otomatik haftalık etkinliğe döner.`,
+  delete_event: n => `Planlanan "${n}" etkinliği silinsin mi?`,
+  kick_player: n => `"${n}" klanından atılsın mı?`,
+  make_leader: n => `"${n}" klanın yeni lideri olsun mu?`,
+  reset_week_sp: n => `"${n}" adlı oyuncunun bu haftaki savaş puanı sıfırlansın mı? (hile şüphesi için)`,
+  end_war: n => `${n} savaşı şu anki skorla bitirilsin mi? Kupalar dağıtılır.`,
+  cancel_war: n => `${n} savaşı sonuçsuz iptal edilsin mi?`,
+  stop_gift: n => `"${n}" hediyesi durdurulsun mu? Henüz almayanlar alamaz.`,
+  remove_admin: n => `${n} yöneticilikten çıkarılsın mı?`,
+  unban_player: n => `"${n}" adlı oyuncunun banı kaldırılsın mı?`,
 };
-const DONE = { resolve_report: 'Şikayet kapatıldı', rename_player: 'Oyuncunun adı sıfırlandı', delete_player: 'Hesap silindi',
-               rename_clan: 'Klanın adı sıfırlandı', delete_clan: 'Klan silindi', stop_event: 'Etkinlik durduruldu', start_event: 'Etkinlik başladı 🎉' };
-async function act(action, target, name, data) {
-  const q = CONFIRM[action] && CONFIRM[action](name);
-  if (q && !confirm(q)) return;
+const DONE = {
+  resolve_report: 'Şikayet kapatıldı', rename_player: 'İsim değişti', delete_player: 'Hesap silindi', rename_clan: 'Klan adı değişti',
+  delete_clan: 'Klan silindi', stop_event: 'Etkinlik durduruldu', start_event: 'Etkinlik ayarlandı 🎉', delete_event: 'Etkinlik silindi',
+  ban_player: 'Oyuncu banlandı', unban_player: 'Ban kaldırıldı', kick_player: 'Klandan atıldı', make_leader: 'Yeni lider atandı',
+  reset_week_sp: 'Haftalık SP sıfırlandı', set_emblem: 'Amblem değişti', set_trophies: 'Kupa güncellendi', set_clan_open: 'Klan ayarı değişti',
+  set_clan_league: 'Lig ayarı değişti', end_war: 'Savaş bitirildi', cancel_war: 'Savaş iptal edildi', set_setting: 'Kaydedildi',
+  create_gift: 'Hediye gönderildi 🎁', stop_gift: 'Hediye durduruldu', add_word: 'Kelime eklendi', remove_word: 'Kelime çıkarıldı',
+  add_admin: 'Yönetici eklendi', remove_admin: 'Yönetici çıkarıldı',
+};
+async function act(action, target, name, data, confirmed) {
+  const q = !confirmed && CONFIRM[action] && CONFIRM[action](name);
+  if (q && !confirm(q)) return false;
   try {
     await rpc('bb_admin_act', { p_action: action, p_target: target == null ? null : String(target), p_data: data || null });
     toast(DONE[action] || 'Tamam');
-    $('modal').innerHTML = '';
+    const reopen = /^(set_emblem|set_trophies|set_clan_open|set_clan_league|make_leader|kick_player)$/.test(action) ? sheetClan : null;
+    closeSheet();
     await load();
-  } catch (e) { toast('Hata: ' + errText(e)); }
+    if (reopen) openClan(reopen);
+    return true;
+  } catch (e) { toast('Hata: ' + errText(e), true); return false; }
+}
+
+function csv(kind) {
+  const rows = kind === 'players'
+    ? [['isim', 'klan', 'toplam_kazanc', 'net_deger', 'gelir_sn', 'itibar', 'sp_toplam', 'sp_hafta', 'bugun_sn', 'toplam_sn', 'gun', 'son_gorulme', 'katilma', 'banli']]
+      .concat(D.players.map(p => [p.name, p.clan_tag || '', p.total, p.net, p.income, p.rep, p.sp, p.week_sp, p.today_s, p.total_s, p.days, p.last_seen, p.created_at, isBanned(p) ? 'evet' : '']))
+    : [['isim', 'surum', 'dil', 'platform', 'toplam_kazanc', 'oyun_suresi_sn', 'bugun_sn', 'gun', 'acilis', 'kurulum', 'son_gorulme']]
+      .concat(D.devices.map(d => [d.name || '', d.version || '1.0.0', d.lang || '', d.platform || '', d.total, d.play_time, d.today_s, d.days, d.opens, d.first_seen, d.last_seen]));
+  const text = '﻿' + rows.map(r => r.map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(';')).join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], { type: 'text/csv;charset=utf-8' }));
+  a.download = `borsa-baronu-${kind}-${D.today}.csv`;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
 }
 
 // ------------------------------------------------------------- events
 document.addEventListener('click', e => {
-  const el = e.target.closest('[data-tab],[data-chart],[data-bar],[data-player],[data-clan],[data-act],[data-ev],[data-close],#evStart');
+  const el = e.target.closest('[data-tab],[data-chart],[data-bar],[data-player],[data-device],[data-clan],[data-act],[data-form],[data-ev],[data-close],[data-pview],[data-gift],[data-csv],button[id]');
   if (!el) return;
-  if (el.dataset.close) { if (e.target === el) $('modal').innerHTML = ''; return; }
+  if (el.dataset.close) { if (e.target === el || el.tagName === 'BUTTON') closeSheet(); return; }
+  if (el.tagName === 'A') e.preventDefault();
   if (el.dataset.tab) { tab = el.dataset.tab; chartSel = null; render(); window.scrollTo(0, 0); }
-  else if (el.dataset.chart) { chartKey = el.dataset.chart; render(); }
+  else if (el.dataset.chart) { chartKey = el.dataset.chart; chartSel = null; render(); }
   else if (el.dataset.bar) { chartSel = +el.dataset.bar === chartSel ? null : +el.dataset.bar; render(); }
+  else if (el.dataset.pview) { pView = el.dataset.pview; render(); }
   else if (el.dataset.player) openPlayer(el.dataset.player);
+  else if (el.dataset.device) openDevice(el.dataset.device);
   else if (el.dataset.clan) openClan(el.dataset.clan);
-  else if (el.dataset.act) act(el.dataset.act, el.dataset.id, el.dataset.name);
+  else if (el.dataset.form) openForm(el.dataset.form, el.dataset.id, el.dataset.name, el);
+  else if (el.dataset.csv) csv(el.dataset.csv);
+  else if (el.dataset.act) {
+    const a = el.dataset.act, v = el.dataset.val;
+    const data = a === 'set_emblem' ? { emblem: v } : a === 'set_clan_open' ? { open: v === 'true' } : a === 'set_clan_league' ? { on: v === 'true' } : null;
+    act(a, el.dataset.id, el.dataset.name, data, /^(set_emblem|set_clan_open|set_clan_league|resolve_report|remove_word)$/.test(a));
+  }
   else if (el.dataset.ev) { evPick = el.dataset.ev; render(); }
+  else if (el.dataset.gift) {
+    const g = readGift('g');
+    if (!confirm(`Herkese hediye gönderilsin mi?\n\n${rewardText(g.reward) || '(ödül yok)'}`)) return;
+    act('create_gift', null, g.title, g, true);
+  }
   else if (el.id === 'evStart' && evPick) {
     const ev = EV[evPick];
-    const h = { 6: '6 saat', 24: '1 gün', 48: '2 gün', 72: '3 gün', 168: '1 hafta' }[evHours] || evHours + ' saat';
-    if (!confirm(`${ev.icon} ${ev.name} ${h} boyunca${evStrong ? ' (2 kat güçlü)' : ''} başlasın mı?\n\nTüm oyunculara hemen yansır.`)) return;
+    const h = (DURATIONS.find(d => d[0] === evHours) || [0, evHours + ' saat'])[1];
+    let at = null;
+    if (evWhen === 'later') {
+      if (!$('evAt').value) return toast('Başlangıç tarihini seç', true);
+      at = new Date($('evAt').value).toISOString();
+    }
+    if (!confirm(`${ev.icon} ${ev.name} ${at ? dateTime(at) + ' tarihinde' : 'hemen'} başlasın, ${h} sürsün mü?${evStrong ? ' (2 kat güçlü)' : ''}`)) return;
     const key = evPick;
     evPick = null;
-    act('start_event', null, null, { key, hours: evHours, config: eventConfig(ev, evStrong) });
+    act('start_event', null, ev.name, { key, hours: evHours, config: eventConfig(ev, evStrong), starts_at: at }, true);
   }
+  else if (el.id === 'annSave') {
+    const v = { tr: $('annTr').value.trim(), en: $('annEn').value.trim(), style: $('annStyle').value };
+    if (!v.tr && !v.en) return toast('Duyuru metni yaz', true);
+    if (!v.en) v.en = v.tr;
+    if (!v.tr) v.tr = v.en;
+    act('set_setting', 'announce', 'Duyuru', { value: v }, true);
+  }
+  else if (el.id === 'annOff') { if (confirm('Duyuru kaldırılsın mı?')) act('set_setting', 'announce', 'Duyuru', { value: null }, true); }
+  else if (el.id === 'mvSave') {
+    const v = $('minVer').value.trim();
+    if (!/^\d+\.\d+\.\d+$/.test(v)) return toast('Sürüm 1.0.2 gibi yazılmalı', true);
+    if (confirm(`${v} sürümünden eski oyunlarda güncelleme uyarısı çıksın mı?\n\nBu sürüm App Store'da yayında olmalı!`)) act('set_setting', 'min_version', v, { value: v }, true);
+  }
+  else if (el.id === 'mvOff') act('set_setting', 'min_version', 'Güncelleme uyarısı', { value: null }, true);
+  else if (el.id === 'wordAdd') { const w = $('wordIn').value.trim(); if (w) act('add_word', null, w, { word: w }, true); }
+  else if (el.id === 'adminAdd') { const m = $('adminIn').value.trim(); if (m && confirm(`${m} yönetici olsun mu? Her şeyi görebilir ve değiştirebilir.`)) act('add_admin', null, m, { email: m }, true); }
 });
 document.addEventListener('input', e => {
   if (e.target.id === 'pSearch') { pSearch = e.target.value; render(); }
@@ -670,8 +1033,12 @@ document.addEventListener('change', e => {
   if (e.target.id === 'pSort') { pSort = e.target.value; render(); }
   if (e.target.id === 'evHours') evHours = +e.target.value;
   if (e.target.id === 'evStrong') evStrong = e.target.value === '1';
+  if (e.target.id === 'evWhen') { evWhen = e.target.value; render(); }
 });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') $('modal').innerHTML = ''; });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeSheet();
+  if (e.key === 'Enter' && e.target.id === 'wordIn') $('wordAdd').click();
+});
 $('refresh').onclick = () => load();
 
 // ------------------------------------------------------------- auth + boot
@@ -699,8 +1066,8 @@ $('login').addEventListener('submit', async e => {
   showApp();
 });
 $('logout').onclick = async () => {
-  clearInterval(timer);
   if (DEV) return toast('Test modunda çıkış yok');
+  clearInterval(timer);
   await sb.auth.signOut();
   D = null;
   showLogin();
@@ -721,8 +1088,8 @@ async function bootDev() {
   db = new PGlite();
   await db.waitReady;
   const base = new URL('../../supabase/', location.href);
-  await db.exec(await (await fetch(new URL('dev-auth-stub.sql', base))).text());
-  await db.exec(await (await fetch(new URL('schema.sql', base))).text());
+  await db.exec(await (await fetch(new URL('dev-auth-stub.sql', base), { cache: 'no-store' })).text());
+  await db.exec(await (await fetch(new URL('schema.sql', base), { cache: 'no-store' })).text());
   DEV_ADMIN = crypto.randomUUID();
   await db.exec(seedSql(DEV_ADMIN));
   showApp();
@@ -734,24 +1101,36 @@ function seedSql(admin) {
     'Kerem.Q', 'Nazlı', 'Arda_B', 'Seda', 'Umut_X', 'Gizem', 'Oğuz', 'Pelin', 'Bora', 'Ceren', 'EfeTrader', 'Duru', 'Alp34', 'Sude'];
   const clans = [['Aslanlar', 'MUS', '🦁'], ['Kurt Sürüsü', 'KRT', '🐺'], ['Boğalar', 'BOGA', '🐂'], ['Ayı Avcıları', 'AYI', '🐻'], ['Elmas Eller', 'TMT', '💎'], ['Roketçiler', 'RKT', '🚀']];
   const P = names.map((n, i) => {
-    const age = R() * 26, seen = i < 5 ? R() * 3 : i < 14 ? R() * 600 : R() * 1440 * Math.min(age, 6);
+    const age = R() * 26, seen = i < 5 ? R() * 2 : i < 14 ? R() * 600 : R() * 1440 * Math.min(age, 6);
     return { id: U(), n, age, seen, total: Math.pow(10, 4 + R() * 10), clan: i < 30 ? i % clans.length : null };
   });
+  // Solo players who never picked a name (devices only).
+  const SOLO = Array.from({ length: 70 }, (_, i) => ({ id: U(), age: R() * 26, seen: i < 4 ? R() * 2 : R() * 1440 * 5, total: Math.pow(10, 3 + R() * 8), v: R() < 0.6 ? '1.0.1' : null, lang: R() < 0.75 ? 'tr' : 'en' }));
   const C = clans.map(([n, t, e], i) => ({ id: U(), n, t, e, leader: P.find(p => p.clan === i).id, tr: Math.floor(R() * 700), xp: Math.floor(R() * 60000) }));
   const q = [];
-  q.push(`insert into auth.users (id) values ('${admin}');`, `insert into public.admins (user_id, email) values ('${admin}', 'test@ornek.com');`);
+  q.push(`insert into auth.users (id, email, is_anonymous) values ('${admin}', 'test@ornek.com', false);`, `insert into public.admins (user_id, email) values ('${admin}', 'test@ornek.com');`);
   q.push(`insert into public.meta (key, value) values ('season', public.bb__season()), ('mm_at', (now() + interval '1 year')::text);`);
-  q.push(`insert into auth.users (id) values ${P.map(p => `('${p.id}')`).join(',')};`);
+  q.push(`insert into auth.users (id) values ${P.concat(SOLO).map(p => `('${p.id}')`).join(',')};`);
   q.push(`insert into public.clans (id, name, tag, emblem, leader_id, trophies, xp, wins, losses, draws, auto_war, open, created_at) values ${C.map((c, i) =>
     `('${c.id}', '${c.n}', '${c.t}', '${c.e}', '${c.leader}', ${c.tr}, ${c.xp}, ${Math.floor(R() * 20)}, ${Math.floor(R() * 12)}, ${Math.floor(R() * 3)}, ${i % 2 === 0}, ${i !== 3}, now() - interval '${Math.floor(10 + R() * 14)} days')`).join(',')};`);
-  q.push(`insert into public.players (id, name, clan_id, role, total_earned, net_worth, income, rep, week_key, week_base, week_sp, sp_total, last_report, last_seen, joined_at, created_at) values ${P.map(p =>
-    `('${p.id}', '${p.n}', ${p.clan == null ? 'null' : `'${C[p.clan].id}'`}, '${p.clan != null && C[p.clan].leader === p.id ? 'leader' : 'member'}', ${p.total}, ${p.total * 0.6}, ${p.total / 2000}, ${Math.floor(Math.sqrt(p.total / 1e7))},
-      public.bb__week(), ${p.total * 0.7}, ${Math.floor(R() * 900)}, ${Math.floor(R() * 5000)}, now() - interval '${p.seen} minutes', now() - interval '${p.seen} minutes', now() - interval '${p.age * 0.8} days', now() - interval '${p.age} days')`).join(',')};`);
-  const days = [];
-  for (const p of P) for (let d = Math.floor(p.age); d >= 0; d--) {
-    if (d === 0 ? p.seen < 1440 : R() < 0.55) days.push(`(public.bb__day(now()) - ${d}, '${p.id}', ${Math.floor(300 + R() * 4800)}, ${Math.floor(R() * 200)})`);
+  q.push(`insert into public.players (id, name, clan_id, role, total_earned, net_worth, income, rep, week_key, week_base, week_sp, sp_total, last_report, last_seen, joined_at, created_at, banned_until, ban_reason) values ${P.map((p, i) =>
+    `('${p.id}', '${p.n}', ${p.clan == null || i === 33 ? 'null' : `'${C[p.clan].id}'`}, '${p.clan != null && C[p.clan].leader === p.id ? 'leader' : 'member'}', ${p.total}, ${p.total * 0.6}, ${p.total / 2000}, ${Math.floor(Math.sqrt(p.total / 1e7))},
+      public.bb__week(), ${p.total * 0.7}, ${Math.floor(R() * 900)}, ${Math.floor(R() * 5000)}, now() - interval '${p.seen} minutes', now() - interval '${p.seen} minutes', now() - interval '${p.age * 0.8} days', now() - interval '${p.age} days',
+      ${i === 33 ? "now() + interval '5 days'" : 'null'}, ${i === 33 ? "'Hile şüphesi'" : 'null'})`).join(',')};`);
+  q.push(`insert into public.saves (player_id, data, updated_at) values ('${P[0].id}', '${JSON.stringify({ cash: 2.4e8, runEarned: 9e9, rep: 14, repExtra: 3, repSpent: 6, staff: { intern: 80, junior: 60, analyst: 40 }, upgrades: { a: true, b: true, c: true }, stocks: { SIMIT: { sh: 10 }, PIKSL: { sh: 4 } }, cards: { m_simit: 3, m_code: 1 }, ach: { e1: true, e2: true }, stats: { taps: 4200, trades: 180, playTime: 36000 }, daily: { idx: 5 } })}', now() - interval '3 minutes');`);
+  const devs = P.map(p => ({ id: p.id, pid: p.id, age: p.age, seen: p.seen, total: p.total, v: R() < 0.5 ? '1.0.1' : null, lang: R() < 0.8 ? 'tr' : 'en' })).concat(SOLO.map(s => ({ ...s, pid: null })));
+  q.push(`insert into public.devices (auth_id, player_id, first_seen, last_seen, opens, version, lang, platform, total, play_time) values ${devs.map(d =>
+    `('${d.id}', ${d.pid ? `'${d.pid}'` : 'null'}, now() - interval '${d.age} days', now() - interval '${d.seen} minutes', ${Math.floor(1 + R() * 60)}, ${d.v ? `'${d.v}'` : 'null'}, ${d.v ? `'${d.lang}'` : 'null'}, ${d.v ? "'ios'" : 'null'}, ${d.v ? d.total : 0}, ${d.v ? Math.floor(R() * 90000) : 0})`).join(',')};`);
+  const pdays = [], ddays = [];
+  for (const d of devs) for (let k = Math.floor(d.age); k >= 0; k--) {
+    if (k === 0 ? d.seen < 1440 : R() < (k === Math.floor(d.age) ? 1 : 0.45)) {
+      const s = Math.floor(300 + R() * 4800);
+      ddays.push(`(public.bb__day(now()) - ${k}, '${d.id}', ${d.v ? s : 0}, ${1 + Math.floor(R() * 4)})`);
+      if (d.pid) pdays.push(`(public.bb__day(now()) - ${k}, '${d.pid}', ${s}, ${Math.floor(R() * 200)})`);
+    }
   }
-  q.push(`insert into public.player_days (day, player_id, seconds, sp) values ${days.join(',')} on conflict do nothing;`);
+  q.push(`insert into public.device_days (day, auth_id, seconds, opens) values ${ddays.join(',')} on conflict do nothing;`);
+  q.push(`insert into public.player_days (day, player_id, seconds, sp) values ${pdays.join(',')} on conflict do nothing;`);
   const war = (a, b, st, extra) => `insert into public.wars (clan_a, clan_b, status, duration_min, created_at, start_at, end_at, score_a, score_b, winner, league) values ('${C[a].id}', '${C[b].id}', '${st}', ${extra});`;
   q.push(war(0, 1, 'active', `240, now() - interval '2 hours', now() - interval '2 hours', now() + interval '2 hours', 1840, 1520, null, false`));
   q.push(war(2, 4, 'active', `480, now() - interval '1 hour', now() - interval '1 hour', now() + interval '7 hours', 610, 790, null, true`));
@@ -773,6 +1152,10 @@ function seedSql(admin) {
     ('${P[8].id}', null, '${C[3].id}', 'Klan adı hakaret içeriyor', now() - interval '40 minutes', null),
     ('${P[1].id}', '${P[22].id}', null, '', now() - interval '2 days', now() - interval '1 day');`);
   q.push(`insert into public.events (key, starts_at, ends_at, config) values ('dividend_week', now() - interval '12 days', now() - interval '10 days', '{}');`);
+  q.push(`insert into public.gifts (target, reward, title, message, created_at, expires_at) values (null, '{"cash":120,"pack":"bundle"}', 'Açılış hediyesi', 'Hoş geldin!', now() - interval '2 days', now() + interval '1 day');`);
+  q.push(`insert into public.gift_claims (gift_id, pid) select 1, id from auth.users where random() < 0.5 and is_anonymous;`);
+  q.push(`insert into public.bad_words (word) values ('salak'), ('aptal');`);
+  q.push(`insert into public.admin_log (at, admin, action, target, detail) values (now() - interval '1 day', 'test@ornek.com', 'create_gift', null, '{"title":"Açılış hediyesi"}'), (now() - interval '5 hours', 'test@ornek.com', 'ban_player', null, '{"reason":"Hile şüphesi"}');`);
   return q.join('\n');
 }
 
